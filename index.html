@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EdM Soluções — Websites profissionais com Vibe Coding</title>
+<meta name="description" content="A EdM Soluções cria websites modernos, rápidos e personalizados usando Vibe Coding — design premium, desenvolvimento ágil e presença digital acessível para o seu negócio.">
+<meta name="theme-color" content="#08090a">
+<link rel="icon" type="image/png" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/img/favicon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="EdM Soluções — Websites profissionais com Vibe Coding">
+<meta property="og:description" content="Criamos websites modernos, rápidos e personalizados para apresentar sua empresa, fortalecer sua marca e facilitar o contato com seus clientes.">
+<meta property="og:image" content="assets/posters/macbook.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "EdM Soluções",
+  "description": "Criação de websites profissionais com Vibe Coding — design premium, desenvolvimento ágil e presença digital acessível.",
+  "telephone": "+5582996153289",
+  "image": "assets/img/logo-full.png",
+  "founder": { "@type": "Person", "name": "Eduardo Lucas" }
+}
+</script>
+
+<style>
+/* =========================================================
+   TOKENS
+   ========================================================= */
+:root{
+  color-scheme: dark;
+
+  /* surfaces */
+  --void:        #08090a;
+  --ink:         #0c0d0f;
+  --graphite:    #17181c;
+  --graphite-2:  #1e1f24;
+  --raised:      #232429;
+
+  /* lines */
+  --hair:        rgba(255,255,255,.09);
+  --hair-strong: rgba(255,255,255,.16);
+
+  /* text / metal */
+  --platinum:    #f3f3f5;
+  --silver:      #d9d9dc;
+  --mist:        #a2a3aa;
+  --mist-dim:    #6f7077;
+
+  --metal-a:     #4c4d52;
+  --metal-b:     #eef0f2;
+  --metal-c:     #86878d;
+
+  /* type scale */
+  --fs-h1:   clamp(2.4rem, 3.4vw + 1.4rem, 4.6rem);
+  --fs-h2:   clamp(1.9rem, 1.7vw + 1.2rem, 2.85rem);
+  --fs-h3:   clamp(1.15rem, .4vw + 1rem, 1.4rem);
+  --fs-lead: clamp(1.05rem, .4vw + .95rem, 1.3rem);
+  --fs-body: 1rem;
+  --fs-small:.875rem;
+  --fs-mono: .8rem;
+
+  /* rhythm */
+  --wrap:    1220px;
+  --pad:     clamp(1.25rem, 4vw, 3rem);
+  --sec-pad: clamp(4.5rem, 9vw, 8rem);
+  --gap-lg:  clamp(2.5rem, 5vw, 5rem);
+
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+/* =========================================================
+   RESET / BASE
+   ========================================================= */
+*,*::before,*::after{ box-sizing:border-box; }
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+  overflow-x:hidden;
+}
+body{
+  margin:0;
+  background:var(--void);
+  color:var(--silver);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:var(--fs-body);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
+ul{ list-style:none; margin:0; padding:0; }
+h1,h2,h3,p{ margin:0; }
+h1,h2,h3{
+  font-family:'Space Grotesk',sans-serif;
+  color:var(--platinum);
+  font-weight:600;
+  line-height:1.12;
+  text-wrap:balance;
+}
+::selection{ background:var(--platinum); color:var(--void); }
+
+a,button,input,textarea{ touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
+
+:focus-visible{ outline:2px solid var(--platinum); outline-offset:3px; border-radius:4px; }
+:focus:not(:focus-visible){ outline:none; }
+
+.skip-link{
+  position:fixed; top:-60px; left:1rem; z-index:1000;
+  background:var(--platinum); color:var(--void);
+  padding:.7rem 1.1rem; border-radius:var(--radius-sm);
+  font-size:var(--fs-small); font-weight:600;
+  transition:top .25s var(--ease);
+}
+.skip-link:focus{ top:1rem; }
+
+.wrap{ max-width:var(--wrap); margin-inline:auto; padding-inline:var(--pad); }
+
+/* faint schematic backdrop, sits behind all content */
+body::before{
+  content:"";
+  position:fixed; inset:0; z-index:-1;
+  background:
+    radial-gradient(1100px 640px at 82% -8%, rgba(255,255,255,.05), transparent 60%),
+    radial-gradient(900px 520px at 8% 8%, rgba(255,255,255,.035), transparent 55%);
+  pointer-events:none;
+}
+
+::-webkit-scrollbar{ width:10px; }
+::-webkit-scrollbar-track{ background:var(--void); }
+::-webkit-scrollbar-thumb{ background:var(--graphite-2); border-radius:8px; border:2px solid var(--void); }
+
+/* =========================================================
+   TYPE HELPERS
+   ========================================================= */
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:var(--fs-mono);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--mist-dim);
+  margin-bottom:1rem;
+  display:flex; align-items:center; gap:.6em;
+}
+.eyebrow::before{
+  content:"";
+  width:22px; height:1px;
+  background:linear-gradient(90deg,var(--metal-c),transparent);
+  flex:none;
+}
+.center-text{ text-align:center; justify-content:center; }
+.center-text::before{ display:none; }
+
+.lead{ font-size:var(--fs-lead); color:var(--silver); max-width:52ch; }
+.body-md{ color:var(--mist); max-width:56ch; }
+
+.pull-quote{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(1.05rem,.5vw + 1rem,1.3rem);
+  color:var(--platinum);
+  font-weight:500;
+  line-height:1.5;
+  padding-left:1.1rem;
+  border-left:2px solid var(--metal-c);
+  max-width:48ch;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+.btn{
+  position:relative;
+  display:inline-flex; align-items:center; justify-content:center; gap:.6em;
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size:var(--fs-small);
+  letter-spacing:.01em;
+  padding:.95em 1.7em;
+  border-radius:999px;
+  isolation:isolate;
+  overflow:hidden;
+  white-space:nowrap;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease), background-color .35s var(--ease), border-color .35s var(--ease);
+}
+.btn:active{ transform:scale(.97); }
+
+.btn-primary{
+  color:#101114;
+  background:linear-gradient(100deg,var(--metal-c) 0%, var(--metal-b) 45%, var(--silver) 100%);
+  box-shadow:0 14px 30px -14px rgba(0,0,0,.65);
+}
+.btn-primary::after{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(115deg,transparent 30%, rgba(255,255,255,.85) 48%, transparent 66%);
+  transform:translateX(-120%);
+  transition:transform .75s var(--ease);
+}
+.btn-primary:hover{ box-shadow:0 18px 38px -14px rgba(0,0,0,.75); transform:translateY(-2px); }
+.btn-primary:hover::after{ transform:translateX(120%); }
+
+.btn-ghost{
+  color:var(--platinum);
+  border:1px solid var(--hair-strong);
+  background:rgba(255,255,255,.02);
+}
+.btn-ghost:hover{ background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.3); }
+
+.btn-lg{ padding:1.15em 2.2em; font-size:1rem; }
+.btn-sm{ padding:.7em 1.35em; font-size:.82rem; }
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.site-header{
+  position:fixed; inset-block-start:0; inset-inline:0; z-index:100;
+  padding-block:1.15rem;
+  transition:padding .4s var(--ease), background-color .4s var(--ease), border-color .4s var(--ease), backdrop-filter .4s var(--ease);
+  border-bottom:1px solid transparent;
+}
+.site-header.scrolled{
+  padding-block:.7rem;
+  background:rgba(9,10,11,.72);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  border-color:var(--hair);
+}
+.header-inner{ display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
+.brand{ display:flex; align-items:center; gap:.65rem; flex:none; }
+.brand-mark{ width:30px; height:auto; }
+.brand-word{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.05rem; font-weight:600; color:var(--platinum);
+  letter-spacing:.01em;
+}
+.brand-word b{ font-weight:600; color:var(--mist); }
+
+.nav-desktop{ display:none; gap:2.1rem; }
+.nav-desktop a{
+  font-size:var(--fs-small); color:var(--mist);
+  position:relative; padding-block:.3rem;
+  transition:color .3s var(--ease);
+}
+.nav-desktop a::after{
+  content:""; position:absolute; left:0; right:100%; bottom:0; height:1px;
+  background:var(--platinum); transition:right .35s var(--ease);
+}
+.nav-desktop a:hover{ color:var(--platinum); }
+.nav-desktop a:hover::after{ right:0; }
+
+.nav-cta{ display:none; }
+
+.menu-toggle{
+  width:40px; height:40px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  border:1px solid var(--hair-strong);
+}
+.menu-toggle span,.menu-toggle span::before,.menu-toggle span::after{
+  content:""; display:block; width:16px; height:1.5px; background:var(--platinum);
+  transition:transform .3s var(--ease), opacity .3s var(--ease);
+}
+.menu-toggle span::before{ transform:translateY(-5px); }
+.menu-toggle span::after{ transform:translateY(3.5px); }
+.menu-toggle[aria-expanded="true"] span{ background:transparent; }
+.menu-toggle[aria-expanded="true"] span::before{ transform:translateY(0) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span::after{ transform:translateY(0) rotate(-45deg); }
+
+.nav-mobile{
+  position:fixed; inset:0; z-index:99;
+  background:rgba(8,9,10,.98);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.9rem;
+  opacity:0; visibility:hidden; transform:translateY(-8px);
+  transition:opacity .35s var(--ease), transform .35s var(--ease), visibility 0s linear .35s;
+}
+.nav-mobile.open{ opacity:1; visibility:visible; transform:translateY(0); transition:opacity .35s var(--ease), transform .35s var(--ease); }
+.nav-mobile a{ font-family:'Space Grotesk',sans-serif; font-size:1.4rem; color:var(--platinum); }
+.nav-mobile .btn{ margin-top:.8rem; }
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:flex; flex-direction:column; justify-content:center;
+  padding-block: 8.5rem 5rem;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute; inset:0; z-index:-1;
+  background:
+    radial-gradient(760px 460px at 50% 0%, rgba(255,255,255,.075), transparent 65%),
+    repeating-linear-gradient(0deg, transparent 0 39px, rgba(255,255,255,.035) 39px 40px),
+    repeating-linear-gradient(90deg, transparent 0 39px, rgba(255,255,255,.035) 39px 40px);
+  mask-image:linear-gradient(to bottom, black, transparent 92%);
+}
+.hero-inner{ max-width:840px; }
+.hero-title{ font-size:var(--fs-h1); }
+.hero-title .sheen{
+  background:linear-gradient(100deg,var(--silver) 0%, #fff 35%, var(--metal-c) 55%, var(--silver) 100%);
+  background-size:220% auto;
+  background-position:100% 0;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero-sub{ margin-top:1.5rem; font-size:var(--fs-lead); color:var(--mist); max-width:56ch; }
+.hero-actions{ margin-top:2.4rem; display:flex; flex-wrap:wrap; gap:1rem; align-items:center; }
+
+.hero-typewriter{
+  margin-top:3rem;
+  font-family:'JetBrains Mono',monospace;
+  font-size:var(--fs-mono);
+  color:var(--mist-dim);
+  min-height:1.4em;
+}
+.tw-prompt{ color:var(--metal-c); margin-right:.5em; }
+.tw-cursor{ margin-left:2px; animation:blink 1s step-end infinite; color:var(--silver); }
+
+.hero-tags{
+  margin-top:2.2rem; display:flex; flex-wrap:wrap; gap:.6rem .7rem;
+}
+.hero-tags li{
+  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+  color:var(--mist); text-transform:uppercase;
+  border:1px solid var(--hair); border-radius:999px; padding:.45em 1em;
+}
+
+.scroll-cue{
+  position:absolute; bottom:2.4rem; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:.6rem;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.1em;
+  color:var(--mist-dim); text-transform:uppercase;
+}
+.scroll-cue span{
+  width:1px; height:34px;
+  background:linear-gradient(var(--mist-dim), transparent);
+  position:relative; overflow:hidden;
+}
+.scroll-cue span::after{
+  content:""; position:absolute; left:0; top:-100%; width:100%; height:100%;
+  background:linear-gradient(var(--platinum), transparent);
+  animation:cueDrop 2.6s var(--ease) infinite;
+}
+@keyframes cueDrop{ 0%{ top:-100%; } 60%,100%{ top:100%; } }
+@keyframes blink{ 50%{ opacity:0; } }
+
+/* =========================================================
+   MEDIA — videos float free on the page: no card, no border,
+   no hard edges. They fade softly into the background instead
+   of sitting inside a demarcated player.
+   ========================================================= */
+.media-float{ position:relative; }
+.media-float::before{
+  content:"";
+  position:absolute; inset:-22px; z-index:-1;
+  background:radial-gradient(closest-side, rgba(255,255,255,.07), transparent 72%);
+  filter:blur(40px);
+  pointer-events:none;
+}
+.media-float video{
+  width:100%; height:100%; object-fit:contain; display:block;
+  -webkit-mask-image:radial-gradient(ellipse 76% 74% at 50% 50%, #000 58%, transparent 100%);
+  mask-image:radial-gradient(ellipse 76% 74% at 50% 50%, #000 58%, transparent 100%);
+  filter:drop-shadow(0 30px 55px rgba(0,0,0,.5));
+}
+.media-float--wide{ aspect-ratio:16/9; max-width:1060px; margin-inline:auto; }
+.media-float--desktop{ aspect-ratio:16/9; }
+.media-float--phone{ aspect-ratio:9/16; max-width:300px; margin-inline:auto; }
+.media-float--phone video{
+  -webkit-mask-image:radial-gradient(ellipse 88% 80% at 50% 50%, #000 60%, transparent 100%);
+  mask-image:radial-gradient(ellipse 88% 80% at 50% 50%, #000 60%, transparent 100%);
+}
+
+/* full-bleed: video becomes the section's own fabric, not an object placed on it */
+.bleed-media{
+  position:absolute; inset:0; z-index:0; overflow:hidden;
+}
+.bleed-media video{
+  width:100%; height:100%; object-fit:cover; display:block;
+  filter:saturate(1.03);
+}
+.bleed-overlay{
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+}
+
+/* ambient hero backdrop video — dimmed, desaturated, purely atmospheric */
+.hero-media{
+  position:absolute; inset:0; z-index:-2; overflow:hidden;
+}
+.hero-media video{
+  width:100%; height:100%; object-fit:cover; display:block;
+  opacity:.4;
+  filter:grayscale(.35) brightness(.6) contrast(1.08);
+}
+.hero-media::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, var(--void) 0%, rgba(8,9,10,.55) 35%, rgba(8,9,10,.75) 70%, var(--void) 100%);
+}
+
+
+/* =========================================================
+   SCROLL-SCRUBBING (desktop-only, Apple-style: video pins and
+   plays frame-by-frame as the section scrolls past)
+   ========================================================= */
+.scrub-wrap{ position:relative; }
+.scrub-sticky{ position:relative; padding-block:var(--sec-pad); }
+.scrub-progress{ display:none; }
+
+@media (min-width:960px){
+  @media (prefers-reduced-motion:no-preference){
+    .scrub-wrap{ height:230vh; }
+    .scrub-wrap.scrub-wrap--tall{ height:210vh; }
+    .scrub-sticky{
+      position:sticky; top:0; height:100svh;
+      display:flex; align-items:center;
+      overflow:hidden; padding-block:0;
+    }
+    .scrub-progress{
+      display:block; position:absolute; left:0; right:0; bottom:0; height:2px;
+      background:var(--hair); z-index:3;
+    }
+    .scrub-progress i{
+      display:block; height:100%; width:100%; transform:scaleX(0); transform-origin:left;
+      background:linear-gradient(90deg,var(--metal-c),var(--platinum));
+      will-change:transform;
+    }
+  }
+}
+
+/* =========================================================
+   BLEED SECTION (video as the section's own background fabric)
+   ========================================================= */
+.bleed-section{ background:var(--void); }
+.bleed-section .scrub-sticky{ min-height:640px; display:flex; align-items:center; overflow:hidden; }
+.bleed-text{ position:relative; z-index:2; max-width:560px; padding-block:2.5rem; }
+.bleed-overlay--growth{
+  background:linear-gradient(100deg, rgba(6,7,8,.94) 0%, rgba(6,7,8,.87) 34%, rgba(6,7,8,.55) 62%, rgba(6,7,8,.22) 88%, rgba(6,7,8,.12) 100%);
+}
+
+/* =========================================================
+   SPLIT SECTIONS (macbook / vibe coding)
+   ========================================================= */
+.split-section--graphite{ background:var(--graphite); }
+.split-inner{
+  display:grid; grid-template-columns:1fr; gap:var(--gap-lg); align-items:center;
+}
+.split-text{ order:1; }
+.split-media{ order:2; }
+
+.cta-row{ margin-top:2.1rem; }
+
+.check-list{ margin:1.6rem 0 0; display:flex; flex-direction:column; gap:.7rem; }
+.check-list li{
+  position:relative; padding-left:1.6rem; color:var(--silver); font-size:var(--fs-small);
+}
+.check-list li::before{
+  content:""; position:absolute; left:0; top:.45em; width:8px; height:8px;
+  border-radius:50%; background:linear-gradient(135deg,var(--metal-b),var(--metal-c));
+}
+
+/* =========================================================
+   CENTER SECTION (responsivo)
+   ========================================================= */
+.center-section{ background:var(--void); }
+.center-head{ max-width:640px; margin-inline:auto; text-align:center; }
+.center-head .eyebrow{ justify-content:center; }
+.center-head .eyebrow::before{ display:none; }
+.center-head .lead{ margin-inline:auto; }
+.center-media{ margin-top:var(--gap-lg); }
+.center-tail{ background:var(--void); padding-block:0 var(--sec-pad); }
+.tag-row{
+  margin-top:var(--gap-lg); display:flex; flex-wrap:wrap; justify-content:center; gap:.6rem .8rem;
+}
+.tag-row li{
+  font-size:var(--fs-small); color:var(--mist);
+  border:1px solid var(--hair); border-radius:999px; padding:.55em 1.2em;
+}
+.center-cta{ margin-top:2.4rem; text-align:center; }
+@media (min-width:960px){
+  @media (prefers-reduced-motion:no-preference){
+    .center-tail{ padding-block:3rem var(--sec-pad); }
+  }
+}
+
+/* =========================================================
+   PROCESS
+   ========================================================= */
+.process-section{ padding-block:var(--sec-pad); background:var(--ink); }
+.process-head{ max-width:600px; margin-inline:auto; }
+.process-grid{
+  margin-top:var(--gap-lg);
+  display:grid; grid-template-columns:1fr; gap:1px;
+  background:var(--hair);
+  border:1px solid var(--hair);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+}
+.process-card{ background:var(--ink); padding:2.4rem 2rem; }
+.process-num{
+  font-family:'JetBrains Mono',monospace; font-size:.85rem; color:var(--metal-c);
+  letter-spacing:.08em;
+}
+.process-card h3{ margin-top:1.1rem; font-size:var(--fs-h3); }
+.process-card p{ margin-top:.75rem; color:var(--mist); font-size:var(--fs-small); max-width:38ch; }
+
+/* =========================================================
+   FOUNDER
+   ========================================================= */
+.founder-section{ padding-block:var(--sec-pad); background:var(--graphite); }
+.founder-inner{
+  display:grid; grid-template-columns:1fr; gap:var(--gap-lg); align-items:center;
+}
+.founder-badge{ justify-self:start; }
+.badge-ring{
+  width:132px; height:132px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+  background:var(--graphite-2);
+}
+.badge-ring::before{
+  content:""; position:absolute; inset:0; border-radius:50%; padding:1.5px;
+  background:conic-gradient(from 0deg, var(--metal-c), var(--metal-b), var(--metal-a), var(--metal-c));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  animation:spin 22s linear infinite;
+}
+.badge-ring span{
+  font-family:'Space Grotesk',sans-serif; font-size:1.7rem; font-weight:600; color:var(--platinum);
+}
+@keyframes spin{ to{ transform:rotate(360deg); } }
+.founder-role{ margin-top:1.4rem; font-family:'JetBrains Mono',monospace; font-size:.78rem; letter-spacing:.05em; color:var(--mist-dim); text-transform:uppercase; }
+
+/* =========================================================
+   FINAL CTA
+   ========================================================= */
+.final-cta{ position:relative; padding-block:var(--sec-pad); background:var(--void); overflow:hidden; }
+.final-cta::before{
+  content:""; position:absolute; inset:0; z-index:0;
+  background:radial-gradient(680px 380px at 50% 30%, rgba(255,255,255,.06), transparent 70%);
+}
+.final-cta-inner{ position:relative; z-index:1; max-width:640px; margin-inline:auto; text-align:center; }
+.final-cta-inner p{ margin-top:1.1rem; color:var(--mist); font-size:var(--fs-lead); }
+.final-cta-inner .btn{ margin-top:2.2rem; }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer{ background:var(--graphite); border-top:1px solid var(--hair); }
+.footer-inner{
+  padding-block:var(--sec-pad);
+  display:grid; grid-template-columns:1fr; gap:2.6rem;
+}
+.footer-brand img{ width:150px; height:auto; }
+.footer-brand p{ margin-top:1.1rem; color:var(--mist-dim); font-size:var(--fs-small); max-width:32ch; }
+.footer-nav{ display:flex; flex-direction:column; gap:.85rem; }
+.footer-nav a{ color:var(--mist); font-size:var(--fs-small); transition:color .3s var(--ease); }
+.footer-nav a:hover{ color:var(--platinum); }
+.footer-contact p{ font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--mist-dim); margin-bottom:.6rem; }
+.footer-contact a{ font-family:'Space Grotesk',sans-serif; font-size:1.15rem; color:var(--platinum); }
+.footer-bottom{
+  border-top:1px solid var(--hair);
+  padding-block:1.4rem;
+  display:flex; flex-wrap:wrap; gap:.6rem 1.5rem; justify-content:space-between;
+  font-size:.78rem; color:var(--mist-dim);
+}
+
+/* =========================================================
+   WHATSAPP FLOAT
+   ========================================================= */
+.wa-float{
+  position:fixed; right:1.4rem; bottom:1.4rem; z-index:90;
+  width:56px; height:56px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(135deg,var(--metal-c),var(--silver));
+  color:#101114;
+  box-shadow:0 16px 32px -12px rgba(0,0,0,.7);
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.wa-float:hover{ transform:translateY(-3px) scale(1.04); box-shadow:0 20px 40px -12px rgba(0,0,0,.8); }
+.wa-float svg{ width:26px; height:26px; }
+
+/* =========================================================
+   REVEAL MOTION (progressive enhancement)
+   ========================================================= */
+@media (prefers-reduced-motion:no-preference){
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+  .reveal.is-visible{ opacity:1; transform:none; }
+  .hero-title .sheen{ animation:sheenSweep 2.6s var(--ease) .3s 1; }
+  @keyframes sheenSweep{ from{ background-position:130% 0; } to{ background-position:-30% 0; } }
+}
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  .badge-ring::before{ animation:none; }
+  .scroll-cue span::after{ animation:none; }
+}
+
+/* =========================================================
+   BREAKPOINTS
+   ========================================================= */
+@media (min-width:640px){
+  .footer-inner{ grid-template-columns:1.3fr 1fr 1fr; }
+  .process-grid{ grid-template-columns:repeat(3,1fr); }
+}
+
+@media (min-width:960px){
+  .nav-desktop{ display:flex; }
+  .nav-cta{ display:inline-flex; }
+  .menu-toggle{ display:none; }
+
+  .split-inner{ grid-template-columns:1fr 1fr; }
+  .split-section.reverse .split-media{ order:1; }
+  .split-section.reverse .split-text{ order:2; }
+
+  .founder-inner{ grid-template-columns:220px 1fr; }
+}
+
+@media (max-width:959px){
+  .nav-mobile{ display:flex; }
+}
+@media (min-width:960px){
+  .nav-mobile{ display:none !important; }
+}
+
+/* small phones */
+@media (max-width:380px){
+  :root{ --pad:1.1rem; }
+  .hero-tags li{ font-size:.66rem; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<div id="topo"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="wrap header-inner">
+    <a class="brand" href="#topo" aria-label="EdM Soluções — início">
+      <img class="brand-mark" src="assets/img/logo-mark.png" width="30" height="13" alt="">
+      <span class="brand-word">Soluções</span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Navegação principal">
+      <a href="#solucoes">Soluções</a>
+      <a href="#vibe-coding">Vibe Coding</a>
+      <a href="#responsivo">Responsivo</a>
+      <a href="#processo">Processo</a>
+      <a href="#sobre">Sobre</a>
+    </nav>
+
+    <a class="btn btn-primary btn-sm nav-cta" id="waNavBtn" href="#" target="_blank" rel="noopener">Falar no WhatsApp</a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navMobile">
+      <span></span>
+    </button>
+  </div>
+
+  <nav class="nav-mobile" id="navMobile" aria-label="Navegação mobile">
+    <a href="#solucoes">Soluções</a>
+    <a href="#vibe-coding">Vibe Coding</a>
+    <a href="#responsivo">Responsivo</a>
+    <a href="#processo">Processo</a>
+    <a href="#sobre">Sobre</a>
+    <a class="btn btn-primary" id="waMobileBtn" href="#" target="_blank" rel="noopener">Falar no WhatsApp</a>
+  </nav>
+</header>
+
+<main id="conteudo">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="topo">
+    <div class="hero-media" aria-hidden="true">
+      <video muted loop playsinline autoplay preload="auto" poster="assets/posters/growth.jpg" disablepictureinpicture src="assets/videos/growth.mp4"></video>
+    </div>
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <p class="eyebrow reveal">EdM Soluções · Estúdio de Vibe Coding</p>
+      <h1 class="hero-title reveal">Presença digital<br><span class="sheen">à altura</span> do seu negócio.</h1>
+      <p class="hero-sub reveal">A EdM Soluções cria websites modernos, rápidos e personalizados — unindo estratégia, design e Vibe Coding para transformar a presença da sua empresa no digital.</p>
+
+      <div class="hero-actions reveal">
+        <a class="btn btn-primary" id="waHeroBtn" href="#" target="_blank" rel="noopener">Criar meu projeto</a>
+        <a class="btn btn-ghost" href="#processo">Como funciona ↓</a>
+      </div>
+
+      <p class="hero-typewriter reveal"><span class="tw-prompt">&gt;</span><span id="twText"></span><span class="tw-cursor" aria-hidden="true">|</span></p>
+
+      <ul class="hero-tags reveal">
+        <li>Vibe Coding</li>
+        <li>Design sob medida</li>
+        <li>Suporte direto</li>
+        <li>Entrega ágil</li>
+      </ul>
+    </div>
+
+    <div class="scroll-cue reveal" aria-hidden="true"><span></span>Role para explorar</div>
+  </section>
+
+  <!-- ============ 01 · SOLUÇÕES DIGITAIS (MacBook) ============ -->
+  <section class="scrub-wrap split-section" id="solucoes">
+    <div class="scrub-sticky">
+      <div class="wrap split-inner">
+        <div class="split-text reveal">
+          <p class="eyebrow">Soluções digitais</p>
+          <h2>Seu negócio merece uma presença digital profissional.</h2>
+          <p class="lead" style="margin-top:1.1rem;">Criamos websites modernos, rápidos e personalizados para apresentar sua empresa, fortalecer sua marca e facilitar o contato com seus clientes.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" id="waMacbookBtn" href="#" target="_blank" rel="noopener">Quero criar o site da minha empresa</a>
+          </div>
+        </div>
+        <div class="split-media reveal">
+          <div class="media-float media-float--desktop">
+            <video class="scrub-video" muted loop playsinline autoplay preload="auto" poster="assets/posters/macbook.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture src="assets/videos/macbook.mp4"></video>
+          </div>
+        </div>
+      </div>
+      <div class="scrub-progress" aria-hidden="true"><i></i></div>
+    </div>
+  </section>
+
+  <!-- ============ 02 · VIBE CODING (Smartphone) ============ -->
+  <section class="scrub-wrap split-section split-section--graphite reverse" id="vibe-coding">
+    <div class="scrub-sticky">
+      <div class="wrap split-inner">
+        <div class="split-media reveal">
+          <div class="media-float media-float--phone">
+            <video class="scrub-video" muted loop playsinline autoplay preload="auto" poster="assets/posters/smartphone.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture src="assets/videos/smartphone.mp4"></video>
+          </div>
+        </div>
+        <div class="split-text reveal">
+          <p class="eyebrow">O que é Vibe Coding?</p>
+          <h2>O futuro do desenvolvimento digital está mais acessível.</h2>
+          <p class="lead" style="margin-top:1.1rem;">Vibe Coding é uma nova abordagem que utiliza tecnologias modernas e inteligência artificial para transformar ideias em soluções digitais com mais agilidade e eficiência.</p>
+          <p class="body-md" style="margin-top:1.1rem;">Na EdM Soluções, utilizamos tecnologia com estratégia, criatividade e personalização. A inteligência artificial ajuda a acelerar processos, mas cada projeto continua sendo pensado para representar sua empresa e atender seus objetivos.</p>
+          <p class="pull-quote" style="margin-top:1.4rem;">“Mais eficiência no desenvolvimento. Mais possibilidades para o seu negócio.”</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" id="waVibeBtn" href="#" target="_blank" rel="noopener">Conhecer uma solução para meu negócio</a>
+          </div>
+        </div>
+      </div>
+      <div class="scrub-progress" aria-hidden="true"><i></i></div>
+    </div>
+  </section>
+
+  <!-- ============ 03 · RESPONSIVO (Devices) ============ -->
+  <section class="scrub-wrap scrub-wrap--tall center-section" id="responsivo">
+    <div class="scrub-sticky">
+      <div class="wrap">
+        <div class="center-head reveal">
+          <p class="eyebrow">Seu website em todos os dispositivos</p>
+          <h2>Uma experiência profissional em qualquer tela.</h2>
+          <p class="lead" style="margin-top:1.1rem;">Seu website é desenvolvido para funcionar de forma moderna, rápida e organizada em computadores, tablets e smartphones.</p>
+        </div>
+
+        <div class="center-media reveal">
+          <div class="media-float media-float--wide">
+            <video class="scrub-video" muted loop playsinline autoplay preload="auto" poster="assets/posters/devices.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture src="assets/videos/devices.mp4"></video>
+          </div>
+        </div>
+      </div>
+      <div class="scrub-progress" aria-hidden="true"><i></i></div>
+    </div>
+  </section>
+
+  <div class="center-tail">
+    <div class="wrap">
+      <ul class="tag-row reveal">
+        <li>Layout responsivo</li>
+        <li>Navegação intuitiva</li>
+        <li>Experiência otimizada</li>
+        <li>Design adaptado</li>
+        <li>Boa apresentação em qualquer tela</li>
+      </ul>
+
+      <div class="center-cta reveal">
+        <a class="btn btn-primary" id="waDevicesBtn" href="#" target="_blank" rel="noopener">Quero um website profissional</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 04 · CRESCIMENTO DIGITAL (Growth) ============ -->
+  <section class="scrub-wrap bleed-section" id="crescimento">
+    <div class="scrub-sticky">
+      <div class="bleed-media">
+        <video class="scrub-video" muted loop playsinline autoplay preload="auto" poster="assets/posters/growth.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture src="assets/videos/growth.mp4"></video>
+      </div>
+      <div class="bleed-overlay bleed-overlay--growth"></div>
+      <div class="wrap">
+        <div class="bleed-text reveal">
+          <p class="eyebrow">Seu website pode trabalhar pelo seu negócio</p>
+          <h2>Transforme sua presença digital em novas oportunidades.</h2>
+          <p class="lead" style="margin-top:1.1rem;">Um website profissional ajuda sua empresa a apresentar seus serviços, fortalecer sua credibilidade, facilitar o contato e criar novas oportunidades de crescimento.</p>
+          <ul class="check-list">
+            <li>Mais credibilidade</li>
+            <li>Melhor apresentação</li>
+            <li>Presença digital organizada</li>
+            <li>Facilidade para receber contatos</li>
+            <li>Apoio às campanhas de marketing</li>
+            <li>Novas oportunidades para o negócio</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn btn-primary" id="waGrowthBtn" href="#" target="_blank" rel="noopener">Falar com a EdM Soluções</a>
+          </div>
+        </div>
+      </div>
+      <div class="scrub-progress" aria-hidden="true"><i></i></div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESSO ============ -->
+  <section class="process-section" id="processo">
+    <div class="wrap">
+      <div class="process-head">
+        <p class="eyebrow reveal">Como funciona</p>
+        <h2 class="reveal">Do primeiro contato ao site no ar.</h2>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-card reveal">
+          <span class="process-num">01</span>
+          <h3>Conversa inicial</h3>
+          <p>Você entra em contato pelo WhatsApp e conta sobre sua empresa, seus objetivos e o que espera do seu site.</p>
+        </div>
+        <div class="process-card reveal">
+          <span class="process-num">02</span>
+          <h3>Desenvolvimento com Vibe Coding</h3>
+          <p>Unimos estratégia, design e inteligência artificial para transformar sua ideia em um site rápido, moderno e sob medida.</p>
+        </div>
+        <div class="process-card reveal">
+          <span class="process-num">03</span>
+          <h3>Lançamento e suporte</h3>
+          <p>Seu site vai ao ar pronto para representar sua empresa, com acompanhamento direto da EdM Soluções.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOBRE / FUNDADOR ============ -->
+  <section class="founder-section" id="sobre">
+    <div class="wrap founder-inner">
+      <div class="founder-badge reveal">
+        <div class="badge-ring"><span>EL</span></div>
+      </div>
+      <div class="founder-text reveal">
+        <p class="eyebrow">Quem está por trás da EdM</p>
+        <h2>Eduardo Lucas, fundador da EdM Soluções</h2>
+        <p class="lead" style="margin-top:1.1rem;">A EdM Soluções nasceu para tornar a presença digital profissional acessível para empresas de todos os tamanhos. Cada projeto é conduzido de perto, do primeiro contato à entrega final, unindo estratégia, design e as possibilidades do Vibe Coding.</p>
+        <p class="pull-quote" style="margin-top:1.4rem;">“Tecnologia com propósito: cada site é pensado para representar sua empresa e gerar resultado real.”</p>
+        <p class="founder-role">Eduardo Lucas — Fundador &amp; Desenvolvedor</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA FINAL ============ -->
+  <section class="final-cta">
+    <div class="wrap final-cta-inner reveal">
+      <h2>Vamos colocar sua empresa no digital?</h2>
+      <p>Fale agora com a EdM Soluções e conheça a solução ideal para o seu negócio.</p>
+      <a class="btn btn-primary btn-lg" id="waFinalBtn" href="#" target="_blank" rel="noopener">Falar com a EdM Soluções</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <img src="assets/img/logo-full.png" width="150" height="92" alt="EdM Soluções" loading="lazy">
+      <p>Tecnologia moderna. Soluções inteligentes. Presença digital acessível.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Navegação do rodapé">
+      <a href="#solucoes">Soluções</a>
+      <a href="#vibe-coding">Vibe Coding</a>
+      <a href="#responsivo">Responsivo</a>
+      <a href="#processo">Processo</a>
+      <a href="#sobre">Sobre</a>
+    </nav>
+    <div class="footer-contact">
+      <p>WhatsApp</p>
+      <a id="waFooterBtn" href="#" target="_blank" rel="noopener" translate="no">+55 82 99615-3289</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <p>© 2026 EdM Soluções. Todos os direitos reservados.</p>
+    <p>Feito com Vibe Coding.</p>
+  </div>
+</footer>
+
+<a class="wa-float" id="waFloatBtn" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp com a EdM Soluções">
+  <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.02 2.67C8.7 2.67 2.76 8.6 2.76 15.93c0 2.5.7 4.9 2 7.02L2.5 29.33l6.55-2.2a13.2 13.2 0 0 0 6.96 1.99h.01c7.32 0 13.26-5.94 13.26-13.27 0-3.55-1.38-6.87-3.89-9.38a13.14 13.14 0 0 0-9.37-3.8Zm0 24.3h-.01a11.03 11.03 0 0 1-5.63-1.54l-.4-.24-3.89 1.3 1.3-3.79-.26-.39a10.98 10.98 0 0 1-1.7-5.9c0-6.09 4.96-11.05 11.06-11.05a11 11 0 0 1 7.82 3.24 10.94 10.94 0 0 1 3.24 7.82c0 6.1-4.96 11.05-11.06 11.05Zm6.05-8.28c-.33-.17-1.96-.97-2.27-1.08-.3-.11-.53-.17-.75.17-.22.33-.86 1.08-1.05 1.3-.2.22-.39.25-.72.08-.33-.17-1.4-.51-2.66-1.64-.98-.87-1.64-1.95-1.84-2.28-.19-.33-.02-.51.15-.68.15-.15.33-.39.5-.58.16-.2.22-.33.33-.55.11-.22.06-.42-.03-.58-.08-.17-.75-1.8-1.02-2.47-.27-.64-.55-.56-.75-.57-.19-.01-.42-.01-.64-.01-.22 0-.58.08-.89.42-.3.33-1.16 1.14-1.16 2.77 0 1.64 1.19 3.22 1.35 3.44.17.22 2.34 3.57 5.67 5.01.79.34 1.41.55 1.89.7.79.25 1.52.21 2.09.13.64-.1 1.96-.8 2.24-1.58.28-.77.28-1.43.19-1.57-.08-.14-.3-.22-.63-.38Z"/></svg>
+</a>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- WhatsApp links ---------- */
+  var PHONE = "5582996153289";
+  function wa(text){
+    return "https://api.whatsapp.com/send/?phone=" + PHONE + "&text=" + encodeURIComponent(text) + "&type=phone_number&app_absent=0";
+  }
+  var BASE_MSG    = "Olá, vim pelo site da EdM Soluções e gostaria de conhecer as soluções para minha empresa.";
+  var MACBOOK_MSG = "Olá! Vim pelo site da EdM Soluções. Quero criar o site da minha empresa.";
+  var VIBE_MSG    = "Olá! Vim pelo site da EdM Soluções e gostaria de conhecer uma solução para meu negócio.";
+  var DEVICES_MSG = "Olá! Vim pelo site da EdM Soluções. Quero um website profissional para minha empresa.";
+  var GROWTH_MSG  = "Olá! Vim pelo site da EdM Soluções e gostaria de falar sobre soluções digitais para minha empresa.";
+
+  var links = {
+    waNavBtn: BASE_MSG, waMobileBtn: BASE_MSG, waHeroBtn: BASE_MSG,
+    waFinalBtn: BASE_MSG, waFooterBtn: BASE_MSG, waFloatBtn: BASE_MSG,
+    waMacbookBtn: MACBOOK_MSG, waVibeBtn: VIBE_MSG,
+    waDevicesBtn: DEVICES_MSG, waGrowthBtn: GROWTH_MSG
+  };
+  Object.keys(links).forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.href = wa(links[id]);
+  });
+
+  /* ---------- header scroll state ---------- */
+  var header = document.getElementById("siteHeader");
+  var ticking = false;
+  function onScroll(){
+    if(!ticking){
+      window.requestAnimationFrame(function(){
+        header.classList.toggle("scrolled", window.scrollY > 40);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+  document.addEventListener("scroll", onScroll, { passive:true });
+  onScroll();
+
+  /* ---------- mobile menu ---------- */
+  var toggle = document.getElementById("menuToggle");
+  var navMobile = document.getElementById("navMobile");
+  function closeMenu(){
+    toggle.setAttribute("aria-expanded","false");
+    navMobile.classList.remove("open");
+  }
+  toggle.addEventListener("click", function(){
+    var open = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!open));
+    navMobile.classList.toggle("open", !open);
+  });
+  navMobile.querySelectorAll("a").forEach(function(a){
+    a.addEventListener("click", closeMenu);
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape") closeMenu();
+  });
+
+  /* ---------- scroll reveal ---------- */
+  var revealEls = document.querySelectorAll(".reveal");
+  if("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold:.15, rootMargin:"0px 0px -8% 0px" });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add("is-visible"); });
+  }
+
+  /* ---------- scroll-scrubbing (Apple-style pinned video) ----------
+     Desktop + no-reduced-motion: each .scrub-wrap pins its video while
+     the section scrolls past; the scroll position drives currentTime.
+     Mobile / reduced-motion: video just autoplays + loops normally. */
+  (function(){
+    var mqDesktop = window.matchMedia("(min-width:960px)");
+    var mqReduce  = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    var items = [];
+    document.querySelectorAll(".scrub-wrap").forEach(function(wrap){
+      var video = wrap.querySelector("video.scrub-video");
+      if(!video) return;
+      var fill = wrap.querySelector(".scrub-progress i");
+      items.push({ wrap:wrap, video:video, fill:fill, enabled:false, duration:0 });
+    });
+
+    if(!items.length) return;
+
+    function isScrubMode(){ return mqDesktop.matches && !mqReduce.matches; }
+
+    function playLoop(item){
+      var v = item.video;
+      v.loop = true;
+      if(!v.hasAttribute("autoplay")) v.setAttribute("autoplay","");
+      var p = v.play();
+      if(p && p.catch) p.catch(function(){});
+    }
+
+    function enableScrub(item){
+      if(item.enabled) return;
+      item.enabled = true;
+      var v = item.video;
+      v.loop = false;
+      v.pause();
+    }
+
+    function disableScrub(item){
+      if(!item.enabled && item.video.loop) return;
+      item.enabled = false;
+      if(item.fill) item.fill.style.transform = "scaleX(0)";
+      playLoop(item);
+    }
+
+    function applyMode(){
+      var scrub = isScrubMode();
+      items.forEach(function(item){
+        if(scrub) enableScrub(item); else disableScrub(item);
+      });
+    }
+
+    items.forEach(function(item){
+      item.video.addEventListener("loadedmetadata", function(){
+        item.duration = item.video.duration || 0;
+      });
+      if(item.video.readyState >= 1) item.duration = item.video.duration || 0;
+    });
+
+    function update(){
+      if(!isScrubMode()) return;
+      items.forEach(function(item){
+        var rect = item.wrap.getBoundingClientRect();
+        var total = item.wrap.offsetHeight - window.innerHeight;
+        if(total <= 0) return;
+        var progress = Math.min(1, Math.max(0, -rect.top / total));
+        if(item.fill) item.fill.style.transform = "scaleX(" + progress + ")";
+        var d = item.duration;
+        if(d && isFinite(d)){
+          var t = progress * d;
+          if(Math.abs(item.video.currentTime - t) > 0.02){
+            try{ item.video.currentTime = t; }catch(e){}
+          }
+        }
+      });
+    }
+
+    var ticking = false;
+    function onScroll(){
+      if(!ticking){
+        window.requestAnimationFrame(function(){ update(); ticking = false; });
+        ticking = true;
+      }
+    }
+
+    applyMode();
+    document.addEventListener("scroll", onScroll, { passive:true });
+    window.addEventListener("resize", onScroll, { passive:true });
+    if(mqDesktop.addEventListener){
+      mqDesktop.addEventListener("change", function(){ applyMode(); update(); });
+      mqReduce.addEventListener("change", function(){ applyMode(); update(); });
+    }
+    window.requestAnimationFrame(update);
+  })();
+
+  /* ---------- typewriter ---------- */
+  var twEl = document.getElementById("twText");
+  var phrases = [
+    "criando presença digital",
+    "unindo design e tecnologia",
+    "vibe coding em ação",
+    "ideias que viram sites"
+  ];
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduceMotion){
+    twEl.textContent = phrases[0];
+  } else {
+    (function typeLoop(){
+      var i = 0, char = 0, deleting = false;
+      function tick(){
+        var word = phrases[i];
+        if(!deleting){
+          char++;
+          twEl.textContent = word.slice(0, char);
+          if(char === word.length){
+            deleting = true;
+            return setTimeout(tick, 2200);
+          }
+          return setTimeout(tick, 48);
+        } else {
+          char--;
+          twEl.textContent = word.slice(0, char);
+          if(char === 0){
+            deleting = false;
+            i = (i + 1) % phrases.length;
+            return setTimeout(tick, 420);
+          }
+          return setTimeout(tick, 24);
+        }
+      }
+      tick();
+    })();
+  }
+
+  /* ---------- scroll-margin for anchors under sticky header ---------- */
+  document.querySelectorAll("main [id], .hero[id]").forEach(function(el){
+    el.style.scrollMarginTop = "84px";
+  });
+})();
+</script>
+</body>
+</html>

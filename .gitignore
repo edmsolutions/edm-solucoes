@@ -1,0 +1,9 @@
+# SO / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# arquivos temporários
+*.log
+*.tmp
