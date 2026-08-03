@@ -1,6 +1,6 @@
 # EdM Soluções — Website institucional
 
-Site institucional da **EdM Soluções**, estúdio de Vibe Coding. Página única (one-page), estática (HTML + CSS + JS puros, sem build), com vídeos integrados como parte visual do site e efeito de rolagem estilo Apple nas seções de produto.
+Site institucional da **EdM Soluções**, estúdio de desenvolvimento web. Página única (one-page), estática (HTML + CSS + JS puros, sem build), com animações integradas como parte visual do site e efeito de rolagem estilo Apple nas seções de produto.
 
 ## Estrutura
 
