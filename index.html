@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="EdM Soluções — Websites profissionais com Vibe Coding">
 <meta property="og:description" content="Criamos websites modernos, rápidos e personalizados para apresentar sua empresa, fortalecer sua marca e facilitar o contato com seus clientes.">
-<meta property="og:image" content="assets/posters/macbook.jpg">
+<meta property="og:image" content="assets/img/og-cover.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -369,8 +369,8 @@ body::before{
   filter:blur(40px);
   pointer-events:none;
 }
-.media-float video{
-  width:100%; height:100%; object-fit:contain; display:block;
+.media-float canvas{
+  width:100%; height:100%; display:block;
   -webkit-mask-image:radial-gradient(ellipse 76% 74% at 50% 50%, #000 58%, transparent 100%);
   mask-image:radial-gradient(ellipse 76% 74% at 50% 50%, #000 58%, transparent 100%);
   filter:drop-shadow(0 30px 55px rgba(0,0,0,.5));
@@ -378,7 +378,7 @@ body::before{
 .media-float--wide{ aspect-ratio:16/9; max-width:1060px; margin-inline:auto; }
 .media-float--desktop{ aspect-ratio:16/9; }
 .media-float--phone{ aspect-ratio:9/16; max-width:300px; margin-inline:auto; }
-.media-float--phone video{
+.media-float--phone canvas{
   -webkit-mask-image:radial-gradient(ellipse 88% 80% at 50% 50%, #000 60%, transparent 100%);
   mask-image:radial-gradient(ellipse 88% 80% at 50% 50%, #000 60%, transparent 100%);
 }
@@ -387,8 +387,8 @@ body::before{
 .bleed-media{
   position:absolute; inset:0; z-index:0; overflow:hidden;
 }
-.bleed-media video{
-  width:100%; height:100%; object-fit:cover; display:block;
+.bleed-media canvas{
+  width:100%; height:100%; display:block;
   filter:saturate(1.03);
 }
 .bleed-overlay{
@@ -399,8 +399,8 @@ body::before{
 .hero-media{
   position:absolute; inset:0; z-index:-2; overflow:hidden;
 }
-.hero-media video{
-  width:100%; height:100%; object-fit:cover; display:block;
+.hero-media canvas{
+  width:100%; height:100%; display:block;
   opacity:.4;
   filter:grayscale(.35) brightness(.6) contrast(1.08);
 }
@@ -681,7 +681,7 @@ body::before{
   <!-- ============ HERO ============ -->
   <section class="hero" id="topo">
     <div class="hero-media" aria-hidden="true">
-      <video muted loop playsinline autoplay preload="auto" poster="assets/posters/growth.jpg" disablepictureinpicture src="assets/videos/growth.mp4"></video>
+      <canvas class="hero-sprite" data-sprite="growth" data-fit="cover" data-mode="ambient" aria-hidden="true"></canvas>
     </div>
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="wrap hero-inner">
@@ -721,7 +721,7 @@ body::before{
         </div>
         <div class="split-media reveal">
           <div class="media-float media-float--desktop">
-            <video class="scrub-video" muted loop playsinline autoplay preload="auto" poster="assets/posters/macbook.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture src="assets/videos/macbook.mp4"></video>
+            <canvas class="scrub-sprite" data-sprite="macbook" data-fit="contain" aria-hidden="true" tabindex="-1"></canvas>
           </div>
         </div>
       </div>
@@ -735,7 +735,7 @@ body::before{
       <div class="wrap split-inner">
         <div class="split-media reveal">
           <div class="media-float media-float--phone">
-            <video class="scrub-video" muted loop playsinline autoplay preload="auto" poster="assets/posters/smartphone.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture src="assets/videos/smartphone.mp4"></video>
+            <canvas class="scrub-sprite" data-sprite="smartphone" data-fit="contain" aria-hidden="true" tabindex="-1"></canvas>
           </div>
         </div>
         <div class="split-text reveal">
@@ -765,7 +765,7 @@ body::before{
 
         <div class="center-media reveal">
           <div class="media-float media-float--wide">
-            <video class="scrub-video" muted loop playsinline autoplay preload="auto" poster="assets/posters/devices.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture src="assets/videos/devices.mp4"></video>
+            <canvas class="scrub-sprite" data-sprite="devices" data-fit="contain" aria-hidden="true" tabindex="-1"></canvas>
           </div>
         </div>
       </div>
@@ -793,7 +793,7 @@ body::before{
   <section class="scrub-wrap bleed-section" id="crescimento">
     <div class="scrub-sticky">
       <div class="bleed-media">
-        <video class="scrub-video" muted loop playsinline autoplay preload="auto" poster="assets/posters/growth.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture src="assets/videos/growth.mp4"></video>
+        <canvas class="scrub-sprite" data-sprite="growth" data-fit="cover" aria-hidden="true" tabindex="-1"></canvas>
       </div>
       <div class="bleed-overlay bleed-overlay--growth"></div>
       <div class="wrap">
@@ -977,62 +977,195 @@ body::before{
     revealEls.forEach(function(el){ el.classList.add("is-visible"); });
   }
 
-  /* ---------- scroll-scrubbing (Apple-style pinned video) ----------
-     Desktop + no-reduced-motion: each .scrub-wrap pins its video while
-     the section scrolls past; the scroll position drives currentTime.
-     Mobile / reduced-motion: video just autoplays + loops normally. */
+  /* ---------- sprite engine ----------
+     Every animated visual on the site (hero backdrop + the 4 product
+     moments) is a 144-frame sprite sheet (12x12 grid) drawn onto a
+     <canvas>. On desktop the scroll position picks the frame directly
+     (instant, no seeking — works identically on every browser/platform).
+     On mobile / reduced-motion it just free-runs as an ambient loop. */
+  var SPRITE_META = {
+    macbook:    { src:"assets/sprites/macbook.webp",    grid:12, frameCount:144, frameW:420, frameH:236 },
+    smartphone: { src:"assets/sprites/smartphone.webp", grid:12, frameCount:144, frameW:248, frameH:440 },
+    devices:    { src:"assets/sprites/devices.webp",    grid:12, frameCount:144, frameW:860, frameH:484 },
+    growth:     { src:"assets/sprites/growth.webp",     grid:12, frameCount:144, frameW:860, frameH:484 }
+  };
+
+  var imageCache = {};
+  function loadSpriteImage(src){
+    if(!imageCache[src]){
+      imageCache[src] = new Promise(function(resolve){
+        var img = new Image();
+        img.decoding = "async";
+        img.onload = function(){ resolve(img); };
+        img.onerror = function(){ resolve(null); };
+        img.src = src;
+      });
+    }
+    return imageCache[src];
+  }
+
+  var spriteInstances = [];
+
+  function SpriteScrub(canvas){
+    var key = canvas.dataset.sprite;
+    var meta = SPRITE_META[key];
+    this.canvas = canvas;
+    this.ctx = canvas.getContext("2d");
+    this.meta = meta;
+    this.fit = canvas.dataset.fit || "contain";
+    this.frame = -1;
+    this.ready = false;
+    this.img = null;
+    var self = this;
+    spriteInstances.push(this);
+    if(meta){
+      loadSpriteImage(meta.src).then(function(img){
+        self.img = img;
+        self.ready = !!img;
+        self.resize();
+        self.draw(0, true);
+      });
+    }
+  }
+  // Expensive (forces layout via getBoundingClientRect) — call rarely:
+  // once on load and on window resize/orientation change. Never per-frame.
+  SpriteScrub.prototype.resize = function(){
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var rect = this.canvas.getBoundingClientRect();
+    var w = Math.max(1, Math.round(rect.width * dpr));
+    var h = Math.max(1, Math.round(rect.height * dpr));
+    if(this.canvas.width !== w || this.canvas.height !== h){
+      this.canvas.width = w;
+      this.canvas.height = h;
+    }
+  };
+  // Cheap — safe to call every animation frame: only reads the already-set
+  // canvas backing-buffer size, no DOM measurement.
+  SpriteScrub.prototype.draw = function(frameFloat, force){
+    if(!this.ready || !this.meta) return;
+    var meta = this.meta;
+    var idx = Math.max(0, Math.min(meta.frameCount - 1, Math.round(frameFloat)));
+    if(!force && idx === this.frame) return;
+    this.frame = idx;
+
+    var col = idx % meta.grid;
+    var row = Math.floor(idx / meta.grid);
+    var sx = col * meta.frameW, sy = row * meta.frameH;
+
+    var cw = this.canvas.width, ch = this.canvas.height;
+    if(cw === 0 || ch === 0) return;
+
+    var srcRatio = meta.frameW / meta.frameH;
+    var dstRatio = cw / ch;
+    var wider = srcRatio > dstRatio;
+    var dw, dh;
+    if(this.fit === "cover" ? wider : !wider){
+      dh = ch; dw = ch * srcRatio;
+    } else {
+      dw = cw; dh = cw / srcRatio;
+    }
+    var dx = (cw - dw) / 2, dy = (ch - dh) / 2;
+
+    this.ctx.clearRect(0, 0, cw, ch);
+    this.ctx.drawImage(this.img, sx, sy, meta.frameW, meta.frameH, dx, dy, dw, dh);
+  };
+
+  // Single debounced resize handler for every sprite canvas on the page.
+  (function(){
+    var resizeTimer = null;
+    window.addEventListener("resize", function(){
+      if(resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function(){
+        spriteInstances.forEach(function(s){ s.resize(); s.draw(s.frame, true); });
+      }, 120);
+    }, { passive:true });
+  })();
+
+  /* ---------- scroll-scrubbing (Apple-style pinned canvas) ----------
+     Desktop + no-reduced-motion: each .scrub-wrap pins its canvas while
+     the section scrolls past; the scroll position picks the frame.
+     Mobile / reduced-motion: canvas free-runs as a simple ambient loop. */
   (function(){
     var mqDesktop = window.matchMedia("(min-width:960px)");
     var mqReduce  = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     var items = [];
     document.querySelectorAll(".scrub-wrap").forEach(function(wrap){
-      var video = wrap.querySelector("video.scrub-video");
-      if(!video) return;
+      var canvas = wrap.querySelector("canvas.scrub-sprite");
+      if(!canvas) return;
       var fill = wrap.querySelector(".scrub-progress i");
-      items.push({ wrap:wrap, video:video, fill:fill, enabled:false, duration:0 });
+      items.push({ wrap:wrap, sprite:new SpriteScrub(canvas), fill:fill, mode:null, raf:null, acc:0, lastTs:0, frame:0, visible:true });
     });
-
     if(!items.length) return;
 
     function isScrubMode(){ return mqDesktop.matches && !mqReduce.matches; }
 
-    function playLoop(item){
-      var v = item.video;
-      v.loop = true;
-      if(!v.hasAttribute("autoplay")) v.setAttribute("autoplay","");
-      var p = v.play();
-      if(p && p.catch) p.catch(function(){});
+    function ambientTick(item, ts){
+      if(mqReduce.matches){
+        if(item.sprite.ready){
+          item.sprite.draw(40, true);
+          item.raf = null; // frame is drawn and stable — stop scheduling
+          return;
+        }
+        // image not loaded yet — keep checking each frame, but never animate
+        item.raf = window.requestAnimationFrame(function(t){ ambientTick(item, t); });
+        return;
+      }
+      if(!item.lastTs) item.lastTs = ts;
+      var dt = ts - item.lastTs;
+      item.lastTs = ts;
+      var frameDuration = 1000 / 24;
+      item.acc += dt;
+      var count = item.sprite.meta ? item.sprite.meta.frameCount : 144;
+      while(item.acc >= frameDuration){
+        item.frame = (item.frame + 1) % count;
+        item.acc -= frameDuration;
+      }
+      item.sprite.draw(item.frame);
+      if(item.visible){
+        item.raf = window.requestAnimationFrame(function(t){ ambientTick(item, t); });
+      } else {
+        item.raf = null; // paused off-screen; the IntersectionObserver resumes it
+      }
     }
 
-    function enableScrub(item){
-      if(item.enabled) return;
-      item.enabled = true;
-      var v = item.video;
-      v.loop = false;
-      v.pause();
-    }
-
-    function disableScrub(item){
-      if(!item.enabled && item.video.loop) return;
-      item.enabled = false;
+    function startAmbient(item){
+      if(item.mode === "ambient") return;
+      item.mode = "ambient";
+      item.lastTs = 0; item.acc = 0;
       if(item.fill) item.fill.style.transform = "scaleX(0)";
-      playLoop(item);
+      if(item.raf) window.cancelAnimationFrame(item.raf);
+      item.raf = window.requestAnimationFrame(function(t){ ambientTick(item, t); });
+    }
+    function startScrub(item){
+      if(item.mode === "scrub") return;
+      item.mode = "scrub";
+      if(item.raf){ window.cancelAnimationFrame(item.raf); item.raf = null; }
+    }
+
+    if("IntersectionObserver" in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          for(var i=0;i<items.length;i++){
+            if(items[i].wrap === entry.target){
+              var item = items[i];
+              item.visible = entry.isIntersecting;
+              if(item.visible && item.mode === "ambient" && !item.raf){
+                item.lastTs = 0;
+                item.raf = window.requestAnimationFrame(function(t){ ambientTick(item, t); });
+              }
+              break;
+            }
+          }
+        });
+      }, { rootMargin:"200px 0px" });
+      items.forEach(function(item){ io.observe(item.wrap); });
     }
 
     function applyMode(){
       var scrub = isScrubMode();
-      items.forEach(function(item){
-        if(scrub) enableScrub(item); else disableScrub(item);
-      });
+      items.forEach(function(item){ scrub ? startScrub(item) : startAmbient(item); });
     }
-
-    items.forEach(function(item){
-      item.video.addEventListener("loadedmetadata", function(){
-        item.duration = item.video.duration || 0;
-      });
-      if(item.video.readyState >= 1) item.duration = item.video.duration || 0;
-    });
 
     function update(){
       if(!isScrubMode()) return;
@@ -1042,13 +1175,8 @@ body::before{
         if(total <= 0) return;
         var progress = Math.min(1, Math.max(0, -rect.top / total));
         if(item.fill) item.fill.style.transform = "scaleX(" + progress + ")";
-        var d = item.duration;
-        if(d && isFinite(d)){
-          var t = progress * d;
-          if(Math.abs(item.video.currentTime - t) > 0.02){
-            try{ item.video.currentTime = t; }catch(e){}
-          }
-        }
+        var count = item.sprite.meta ? item.sprite.meta.frameCount : 144;
+        item.sprite.draw(progress * (count - 1));
       });
     }
 
@@ -1062,12 +1190,50 @@ body::before{
 
     applyMode();
     document.addEventListener("scroll", onScroll, { passive:true });
-    window.addEventListener("resize", onScroll, { passive:true });
+    window.addEventListener("resize", function(){ applyMode(); onScroll(); }, { passive:true });
     if(mqDesktop.addEventListener){
       mqDesktop.addEventListener("change", function(){ applyMode(); update(); });
-      mqReduce.addEventListener("change", function(){ applyMode(); update(); });
+      mqReduce.addEventListener("change", function(){
+        items.forEach(function(item){ item.mode = null; });
+        applyMode(); update();
+      });
     }
     window.requestAnimationFrame(update);
+  })();
+
+  /* ---------- hero ambient sprite (always free-running, independent of scroll) ---------- */
+  (function(){
+    var canvas = document.querySelector("canvas.hero-sprite");
+    if(!canvas) return;
+    var sprite = new SpriteScrub(canvas);
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(reduce){
+      // show a single static frame, no motion
+      var tries = 0;
+      var iv = setInterval(function(){
+        if(sprite.ready || ++tries > 40){ sprite.draw(40); clearInterval(iv); }
+      }, 100);
+      return;
+    }
+    var frame = 0, acc = 0, lastTs = 0, visible = true, raf = null;
+    var count = SPRITE_META.growth.frameCount;
+    function tick(ts){
+      if(!lastTs) lastTs = ts;
+      var dt = ts - lastTs; lastTs = ts;
+      acc += dt;
+      var frameDuration = 1000 / 24;
+      while(acc >= frameDuration){ frame = (frame + 1) % count; acc -= frameDuration; }
+      sprite.draw(frame);
+      raf = visible ? window.requestAnimationFrame(tick) : null;
+    }
+    raf = window.requestAnimationFrame(tick);
+    var heroEl = document.querySelector(".hero");
+    if(heroEl && "IntersectionObserver" in window){
+      new IntersectionObserver(function(entries){
+        visible = entries[0].isIntersecting;
+        if(visible && !raf){ lastTs = 0; raf = window.requestAnimationFrame(tick); }
+      }, { rootMargin:"200px 0px" }).observe(heroEl);
+    }
   })();
 
   /* ---------- typewriter ---------- */
