@@ -13,6 +13,8 @@ Site institucional da **EdM Soluções**, estúdio de desenvolvimento web. Pági
 
 Não há processo de build, framework ou dependências — é um site 100% estático e leve (~200KB de assets). Qualquer servidor de arquivos estáticos serve.
 
+O logo (cabeçalho e rodapé), o favicon e a foto do fundador estão embutidos no próprio `index.html` (base64), então o arquivo funciona mesmo sozinho; os arquivos em `assets/img/` são as fontes originais.
+
 Os elementos visuais das seções são ícones SVG de linha desenhados direto no `index.html` (classe `.icon-panel`), sem imagens ou vídeos pesados. A única fotografia é a do fundador, em `assets/img/eduardo.jpg`.
 
 ## Rodar localmente
