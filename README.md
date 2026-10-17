@@ -8,21 +8,12 @@ Site institucional da **EdM Soluções**, estúdio de desenvolvimento web. Pági
 .
 ├── index.html          → todo o site (HTML + CSS + JS em um único arquivo)
 └── assets/
-    ├── img/             → logo (mark + full), favicon e imagem de preview (og-cover)
-    └── sprites/         → sprite sheets (.webp) usadas no scroll-scrubbing + manifest.json
+    └── img/             → logo (mark + full), favicon, foto do fundador e imagem de preview (og-cover)
 ```
 
-Não há processo de build, framework ou dependências — é um site 100% estático. Qualquer servidor de arquivos estáticos serve.
+Não há processo de build, framework ou dependências — é um site 100% estático e leve (~200KB de assets). Qualquer servidor de arquivos estáticos serve.
 
-### Como os vídeos funcionam
-
-As 4 animações do site (MacBook, smartphone, dispositivos, crescimento) **não são arquivos de vídeo** — são sequências de 144 frames combinadas em uma única imagem "sprite sheet" (grade 12×12) por seção, desenhadas em um `<canvas>` via JavaScript. Isso permite:
-
-- **Scroll-scrubbing instantâneo no desktop** (a posição da rolagem escolhe o frame exato, sem delay de seek de vídeo — é a mesma técnica usada em páginas de produto como a da Apple).
-- **Loop ambiente leve no mobile e em preferência de "reduzir movimento"** (mostra uma animação simples ou um frame estático, respectivamente).
-- **Consistência entre navegadores** — sem depender de decodificação de vídeo H.264, que se comporta de forma inconsistente entre Chrome/Safari/Firefox/iOS.
-
-Para trocar alguma animação, gere uma nova sequência de frames PNG e recrie o sprite sheet correspondente em `assets/sprites/` (grade 12×12, mesma resolução por frame) — o mapeamento de cada sprite (dimensões, quantidade de frames) fica em `SPRITE_META` dentro do `<script>` no final do `index.html`.
+Os elementos visuais das seções são ícones SVG de linha desenhados direto no `index.html` (classe `.icon-panel`), sem imagens ou vídeos pesados. A única fotografia é a do fundador, em `assets/img/eduardo.jpg`.
 
 ## Rodar localmente
 

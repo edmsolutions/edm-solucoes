@@ -16,7 +16,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {
@@ -37,26 +37,26 @@
 :root{
   color-scheme: dark;
 
-  /* surfaces */
-  --void:        #08090a;
-  --ink:         #0c0d0f;
-  --graphite:    #17181c;
-  --graphite-2:  #1e1f24;
-  --raised:      #232429;
+  /* surfaces — warm charcoal-brown instead of cool graphite */
+  --void:        #100d0a;
+  --ink:         #16120d;
+  --graphite:    #201a13;
+  --graphite-2:  #2a2219;
+  --raised:      #332a1e;
 
   /* lines */
-  --hair:        rgba(255,255,255,.09);
-  --hair-strong: rgba(255,255,255,.16);
+  --hair:        rgba(255,241,224,.09);
+  --hair-strong: rgba(255,241,224,.17);
 
-  /* text / metal */
-  --platinum:    #f3f3f5;
-  --silver:      #d9d9dc;
-  --mist:        #a2a3aa;
-  --mist-dim:    #6f7077;
+  /* text / accent — warm cream & brass instead of cool platinum & silver */
+  --platinum:    #f2ead9;
+  --silver:      #d8c7ab;
+  --mist:        #ab9c86;
+  --mist-dim:    #7c6f5b;
 
-  --metal-a:     #4c4d52;
-  --metal-b:     #eef0f2;
-  --metal-c:     #86878d;
+  --metal-a:     #7a5a34;
+  --metal-b:     #e9d3a3;
+  --metal-c:     #b8905c;
 
   /* type scale */
   --fs-h1:   clamp(2.4rem, 3.4vw + 1.4rem, 4.6rem);
@@ -65,7 +65,6 @@
   --fs-lead: clamp(1.05rem, .4vw + .95rem, 1.3rem);
   --fs-body: 1rem;
   --fs-small:.875rem;
-  --fs-mono: .8rem;
 
   /* rhythm */
   --wrap:    1220px;
@@ -147,9 +146,10 @@ body::before{
    TYPE HELPERS
    ========================================================= */
 .eyebrow{
-  font-family:'JetBrains Mono',monospace;
-  font-size:var(--fs-mono);
-  letter-spacing:.14em;
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size:.78rem;
+  letter-spacing:.12em;
   text-transform:uppercase;
   color:var(--mist-dim);
   margin-bottom:1rem;
@@ -294,53 +294,34 @@ body::before{
    ========================================================= */
 .hero{
   position:relative;
-  min-height:100svh;
+  min-height:90svh;
   display:flex; flex-direction:column; justify-content:center;
   padding-block: 8.5rem 5rem;
   overflow:hidden;
 }
 .hero-bg{
   position:absolute; inset:0; z-index:-1;
-  background:
-    radial-gradient(760px 460px at 50% 0%, rgba(255,255,255,.075), transparent 65%),
-    repeating-linear-gradient(0deg, transparent 0 39px, rgba(255,255,255,.035) 39px 40px),
-    repeating-linear-gradient(90deg, transparent 0 39px, rgba(255,255,255,.035) 39px 40px);
-  mask-image:linear-gradient(to bottom, black, transparent 92%);
+  background:radial-gradient(720px 440px at 50% 0%, rgba(233,211,163,.07), transparent 68%);
 }
-.hero-inner{ max-width:840px; }
+.hero-inner{ max-width:780px; }
 .hero-title{ font-size:var(--fs-h1); }
-.hero-title .sheen{
-  background:linear-gradient(100deg,var(--silver) 0%, #fff 35%, var(--metal-c) 55%, var(--silver) 100%);
-  background-size:220% auto;
-  background-position:100% 0;
-  -webkit-background-clip:text; background-clip:text; color:transparent;
-}
+.hero-title .sheen{ color:var(--metal-b); }
 .hero-sub{ margin-top:1.5rem; font-size:var(--fs-lead); color:var(--mist); max-width:56ch; }
 .hero-actions{ margin-top:2.4rem; display:flex; flex-wrap:wrap; gap:1rem; align-items:center; }
 
-.hero-typewriter{
-  margin-top:3rem;
-  font-family:'JetBrains Mono',monospace;
-  font-size:var(--fs-mono);
-  color:var(--mist-dim);
-  min-height:1.4em;
-}
-.tw-prompt{ color:var(--metal-c); margin-right:.5em; }
-.tw-cursor{ margin-left:2px; animation:blink 1s step-end infinite; color:var(--silver); }
-
 .hero-tags{
-  margin-top:2.2rem; display:flex; flex-wrap:wrap; gap:.6rem .7rem;
+  margin-top:2.6rem; display:flex; flex-wrap:wrap; gap:.6rem .7rem;
 }
 .hero-tags li{
-  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
-  color:var(--mist); text-transform:uppercase;
-  border:1px solid var(--hair); border-radius:999px; padding:.45em 1em;
+  font-size:.78rem; letter-spacing:.03em;
+  color:var(--mist);
+  border:1px solid var(--hair); border-radius:999px; padding:.5em 1.1em;
 }
 
 .scroll-cue{
   position:absolute; bottom:2.4rem; left:50%; transform:translateX(-50%);
   display:flex; flex-direction:column; align-items:center; gap:.6rem;
-  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.1em;
+  font-size:.72rem; letter-spacing:.08em;
   color:var(--mist-dim); text-transform:uppercase;
 }
 .scroll-cue span{
@@ -354,110 +335,38 @@ body::before{
   animation:cueDrop 2.6s var(--ease) infinite;
 }
 @keyframes cueDrop{ 0%{ top:-100%; } 60%,100%{ top:100%; } }
-@keyframes blink{ 50%{ opacity:0; } }
 
 /* =========================================================
-   MEDIA — videos float free on the page: no card, no border,
-   no hard edges. They fade softly into the background instead
-   of sitting inside a demarcated player.
+   ICON PANEL — a soft, calm visual anchor for each section:
+   a warm radial backdrop with a simple line-art glyph.
    ========================================================= */
-.media-float{ position:relative; }
-.media-float::before{
+.icon-panel{
+  position:relative;
+  aspect-ratio:1/1;
+  max-width:340px;
+  margin-inline:auto;
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:radial-gradient(closest-side, var(--graphite-2) 0%, var(--graphite) 72%, transparent 100%);
+  box-shadow:inset 0 0 0 1px var(--hair);
+}
+.icon-panel::before{
   content:"";
-  position:absolute; inset:-22px; z-index:-1;
-  background:radial-gradient(closest-side, rgba(255,255,255,.07), transparent 72%);
-  filter:blur(40px);
-  pointer-events:none;
+  position:absolute; inset:14%;
+  border-radius:50%;
+  background:radial-gradient(closest-side, rgba(233,211,163,.10), transparent 75%);
 }
-.media-float canvas{
-  width:100%; height:100%; display:block;
-  -webkit-mask-image:radial-gradient(ellipse 76% 74% at 50% 50%, #000 58%, transparent 100%);
-  mask-image:radial-gradient(ellipse 76% 74% at 50% 50%, #000 58%, transparent 100%);
-  filter:drop-shadow(0 30px 55px rgba(0,0,0,.5));
+.icon-panel svg{
+  position:relative; width:46%; height:46%;
+  stroke:var(--metal-b); fill:none;
+  stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;
 }
-.media-float--wide{ aspect-ratio:16/9; max-width:1060px; margin-inline:auto; }
-.media-float--desktop{ aspect-ratio:16/9; }
-.media-float--phone{ aspect-ratio:9/16; max-width:300px; margin-inline:auto; }
-.media-float--phone canvas{
-  -webkit-mask-image:radial-gradient(ellipse 88% 80% at 50% 50%, #000 60%, transparent 100%);
-  mask-image:radial-gradient(ellipse 88% 80% at 50% 50%, #000 60%, transparent 100%);
-}
-
-/* full-bleed: video becomes the section's own fabric, not an object placed on it */
-.bleed-media{
-  position:absolute; inset:0; z-index:0; overflow:hidden;
-}
-.bleed-media canvas{
-  width:100%; height:100%; display:block;
-  filter:saturate(1.03);
-}
-.bleed-overlay{
-  position:absolute; inset:0; z-index:1; pointer-events:none;
-}
-
-/* ambient hero backdrop video — dimmed, desaturated, purely atmospheric */
-.hero-media{
-  position:absolute; inset:0; z-index:-2; overflow:hidden;
-}
-.hero-media canvas{
-  width:100%; height:100%; display:block;
-  opacity:.4;
-  filter:grayscale(.35) brightness(.6) contrast(1.08);
-}
-.hero-media::after{
-  content:""; position:absolute; inset:0;
-  background:linear-gradient(180deg, var(--void) 0%, rgba(8,9,10,.55) 35%, rgba(8,9,10,.75) 70%, var(--void) 100%);
-}
-
+.icon-panel--wide{ max-width:420px; }
 
 /* =========================================================
-   SCROLL-SCRUBBING (desktop-only, Apple-style: the frame pins
-   and advances as the section scrolls past)
+   SPLIT SECTIONS (soluções / método / crescimento)
    ========================================================= */
-.scrub-wrap{ position:relative; }
-.scrub-sticky{ position:relative; padding-block:var(--sec-pad); }
-
-@media (min-width:960px){
-  @media (prefers-reduced-motion:no-preference){
-    .scrub-wrap{ height:145vh; }
-    .scrub-wrap.scrub-wrap--tall{ height:135vh; }
-    .scrub-sticky{
-      position:sticky; top:0; height:100svh;
-      display:flex; align-items:center;
-      overflow:hidden; padding-block:0;
-    }
-
-    /* The media and the text around it materialize together as the
-       page scrolls through the pinned section — driven by the same
-       --p (0→1) signal — so the whole section feels like it's
-       responding to the scroll, not like a video playing inside it. */
-    .scrub-wrap .media-float,
-    .scrub-wrap .bleed-media,
-    .center-section.scrub-wrap .center-media{
-      transform:scale(calc(0.93 + 0.07 * var(--p, 1)));
-      opacity:calc(0.65 + 0.35 * var(--p, 1));
-    }
-    .split-section.scrub-wrap .split-text,
-    .bleed-section.scrub-wrap .bleed-text,
-    .center-section.scrub-wrap .center-head{
-      transform:translateY(calc((1 - var(--p, 1)) * 16px));
-    }
-  }
-}
-
-/* =========================================================
-   BLEED SECTION (video as the section's own background fabric)
-   ========================================================= */
-.bleed-section{ background:var(--void); }
-.bleed-section .scrub-sticky{ min-height:640px; display:flex; align-items:center; overflow:hidden; }
-.bleed-text{ position:relative; z-index:2; max-width:560px; padding-block:2.5rem; }
-.bleed-overlay--growth{
-  background:linear-gradient(100deg, rgba(6,7,8,.94) 0%, rgba(6,7,8,.87) 34%, rgba(6,7,8,.55) 62%, rgba(6,7,8,.22) 88%, rgba(6,7,8,.12) 100%);
-}
-
-/* =========================================================
-   SPLIT SECTIONS (macbook / método)
-   ========================================================= */
+.split-section, .center-section{ padding-block:var(--sec-pad); position:relative; }
 .split-section--graphite{ background:var(--graphite); }
 .split-inner{
   display:grid; grid-template-columns:1fr; gap:var(--gap-lg); align-items:center;
@@ -485,7 +394,6 @@ body::before{
 .center-head .eyebrow::before{ display:none; }
 .center-head .lead{ margin-inline:auto; }
 .center-media{ margin-top:var(--gap-lg); }
-.center-tail{ background:var(--void); padding-block:0 var(--sec-pad); }
 .tag-row{
   margin-top:var(--gap-lg); display:flex; flex-wrap:wrap; justify-content:center; gap:.6rem .8rem;
 }
@@ -496,8 +404,7 @@ body::before{
 .center-cta{ margin-top:2.4rem; text-align:center; }
 @media (min-width:960px){
   @media (prefers-reduced-motion:no-preference){
-    .center-tail{ padding-block:3rem var(--sec-pad); }
-  }
+      }
 }
 
 /* =========================================================
@@ -515,7 +422,7 @@ body::before{
 }
 .process-card{ background:var(--ink); padding:2.4rem 2rem; }
 .process-num{
-  font-family:'JetBrains Mono',monospace; font-size:.85rem; color:var(--metal-c);
+  font-weight:700; font-size:.85rem; color:var(--metal-c);
   letter-spacing:.08em;
 }
 .process-card h3{ margin-top:1.1rem; font-size:var(--fs-h3); }
@@ -528,25 +435,23 @@ body::before{
 .founder-inner{
   display:grid; grid-template-columns:1fr; gap:var(--gap-lg); align-items:center;
 }
-.founder-badge{ justify-self:start; }
-.badge-ring{
-  width:132px; height:132px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
+.founder-badge{ justify-self:start; width:100%; max-width:240px; }
+.founder-photo{
   position:relative;
-  background:var(--graphite-2);
+  width:100%; aspect-ratio:1/1;
+  border-radius:50%;
+  padding:4px;
+  background:linear-gradient(145deg, var(--metal-b), var(--metal-a) 55%, var(--metal-c));
+  box-shadow:0 24px 50px -22px rgba(0,0,0,.7);
 }
-.badge-ring::before{
-  content:""; position:absolute; inset:0; border-radius:50%; padding:1.5px;
-  background:conic-gradient(from 0deg, var(--metal-c), var(--metal-b), var(--metal-a), var(--metal-c));
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor; mask-composite:exclude;
-  animation:spin 22s linear infinite;
+.founder-photo img{
+  width:100%; height:100%;
+  border-radius:50%;
+  object-fit:cover; object-position:50% 22%;
+  display:block;
+  border:4px solid var(--graphite);
 }
-.badge-ring span{
-  font-family:'Space Grotesk',sans-serif; font-size:1.7rem; font-weight:600; color:var(--platinum);
-}
-@keyframes spin{ to{ transform:rotate(360deg); } }
-.founder-role{ margin-top:1.4rem; font-family:'JetBrains Mono',monospace; font-size:.78rem; letter-spacing:.05em; color:var(--mist-dim); text-transform:uppercase; }
+.founder-role{ margin-top:1.4rem; font-weight:600; font-size:.78rem; letter-spacing:.05em; color:var(--mist-dim); text-transform:uppercase; }
 
 /* =========================================================
    FINAL CTA
@@ -573,7 +478,7 @@ body::before{
 .footer-nav{ display:flex; flex-direction:column; gap:.85rem; }
 .footer-nav a{ color:var(--mist); font-size:var(--fs-small); transition:color .3s var(--ease); }
 .footer-nav a:hover{ color:var(--platinum); }
-.footer-contact p{ font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--mist-dim); margin-bottom:.6rem; }
+.footer-contact p{ font-weight:600; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--mist-dim); margin-bottom:.6rem; }
 .footer-contact a{ font-family:'Space Grotesk',sans-serif; font-size:1.15rem; color:var(--platinum); }
 .footer-bottom{
   border-top:1px solid var(--hair);
@@ -603,12 +508,9 @@ body::before{
 @media (prefers-reduced-motion:no-preference){
   .reveal{ opacity:0; transform:translateY(26px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
   .reveal.is-visible{ opacity:1; transform:none; }
-  .hero-title .sheen{ animation:sheenSweep 2.6s var(--ease) .3s 1; }
-  @keyframes sheenSweep{ from{ background-position:130% 0; } to{ background-position:-30% 0; } }
 }
 @media (prefers-reduced-motion:reduce){
   html{ scroll-behavior:auto; }
-  .badge-ring::before{ animation:none; }
   .scroll-cue span::after{ animation:none; }
 }
 
@@ -629,7 +531,7 @@ body::before{
   .split-section.reverse .split-media{ order:1; }
   .split-section.reverse .split-text{ order:2; }
 
-  .founder-inner{ grid-template-columns:220px 1fr; }
+  .founder-inner{ grid-template-columns:260px 1fr; }
 }
 
 @media (max-width:959px){
@@ -686,21 +588,16 @@ body::before{
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="topo">
-    <div class="hero-media" aria-hidden="true">
-      <canvas class="hero-sprite" data-sprite="growth" data-fit="cover" data-mode="ambient" aria-hidden="true"></canvas>
-    </div>
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="wrap hero-inner">
       <p class="eyebrow reveal">EdM Soluções · Estúdio de Desenvolvimento Web</p>
-      <h1 class="hero-title reveal">Presença digital<br><span class="sheen">à altura</span> do seu negócio.</h1>
+      <h1 class="hero-title reveal">Presença digital <span class="sheen">à altura</span> do seu negócio.</h1>
       <p class="hero-sub reveal">A EdM Soluções cria websites modernos, rápidos e personalizados — unindo estratégia, design e tecnologia para transformar a presença da sua empresa no digital.</p>
 
       <div class="hero-actions reveal">
         <a class="btn btn-primary" id="waHeroBtn" href="#" target="_blank" rel="noopener">Criar meu projeto</a>
         <a class="btn btn-ghost" href="#processo">Como funciona ↓</a>
       </div>
-
-      <p class="hero-typewriter reveal"><span class="tw-prompt">&gt;</span><span id="twText"></span><span class="tw-cursor" aria-hidden="true">|</span></p>
 
       <ul class="hero-tags reveal">
         <li>Desenvolvimento moderno</li>
@@ -713,71 +610,61 @@ body::before{
     <div class="scroll-cue reveal" aria-hidden="true"><span></span>Role para explorar</div>
   </section>
 
-  <!-- ============ 01 · SOLUÇÕES DIGITAIS (MacBook) ============ -->
-  <section class="scrub-wrap split-section" id="solucoes">
-    <div class="scrub-sticky">
-      <div class="wrap split-inner">
-        <div class="split-text reveal">
-          <p class="eyebrow">Soluções digitais</p>
-          <h2>Seu negócio merece uma presença digital profissional.</h2>
-          <p class="lead" style="margin-top:1.1rem;">Criamos websites modernos, rápidos e personalizados para apresentar sua empresa, fortalecer sua marca e facilitar o contato com seus clientes.</p>
-          <div class="cta-row">
-            <a class="btn btn-primary" id="waMacbookBtn" href="#" target="_blank" rel="noopener">Quero criar o site da minha empresa</a>
-          </div>
+  <!-- ============ 01 · SOLUÇÕES DIGITAIS ============ -->
+  <section class="split-section" id="solucoes">
+    <div class="wrap split-inner">
+      <div class="split-text reveal">
+        <p class="eyebrow">Soluções digitais</p>
+        <h2>Seu negócio merece uma presença digital profissional.</h2>
+        <p class="lead" style="margin-top:1.1rem;">Criamos websites modernos, rápidos e personalizados para apresentar sua empresa, fortalecer sua marca e facilitar o contato com seus clientes.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" id="waMacbookBtn" href="#" target="_blank" rel="noopener">Quero criar o site da minha empresa</a>
         </div>
-        <div class="split-media reveal">
-          <div class="media-float media-float--desktop">
-            <canvas class="scrub-sprite" data-sprite="macbook" data-fit="contain" aria-hidden="true" tabindex="-1"></canvas>
-          </div>
+      </div>
+      <div class="split-media reveal">
+        <div class="icon-panel" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><rect x="8" y="12" width="48" height="32" rx="3"/><circle cx="16" cy="18" r="1.4" fill="var(--metal-b)" stroke="none"/><circle cx="21" cy="18" r="1.4" fill="var(--metal-b)" stroke="none"/><circle cx="26" cy="18" r="1.4" fill="var(--metal-b)" stroke="none"/><path d="M16 36l8-8 6 6 12-12"/><path d="M2 52h60"/></svg>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 02 · MÉTODO (Smartphone) ============ -->
-  <section class="scrub-wrap split-section split-section--graphite reverse" id="metodo">
-    <div class="scrub-sticky">
-      <div class="wrap split-inner">
-        <div class="split-media reveal">
-          <div class="media-float media-float--phone">
-            <canvas class="scrub-sprite" data-sprite="smartphone" data-fit="contain" aria-hidden="true" tabindex="-1"></canvas>
-          </div>
+  <!-- ============ 02 · MÉTODO ============ -->
+  <section class="split-section split-section--graphite reverse" id="metodo">
+    <div class="wrap split-inner">
+      <div class="split-media reveal">
+        <div class="icon-panel" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><path d="M32 32l10-16"/><circle cx="32" cy="32" r="2.4" fill="var(--metal-b)" stroke="none"/><path d="M32 12v4M32 48v4M12 32h4M48 32h4"/></svg>
         </div>
-        <div class="split-text reveal">
-          <p class="eyebrow">Nosso método</p>
-          <h2>O futuro do desenvolvimento digital está mais acessível.</h2>
-          <p class="lead" style="margin-top:1.1rem;">Utilizamos tecnologias modernas e processos otimizados para transformar ideias em soluções digitais com mais agilidade e eficiência.</p>
-          <p class="body-md" style="margin-top:1.1rem;">Na EdM Soluções, unimos tecnologia com estratégia, criatividade e personalização. Isso ajuda a acelerar o desenvolvimento, mas cada projeto continua sendo pensado para representar sua empresa e atender seus objetivos.</p>
-          <p class="pull-quote" style="margin-top:1.4rem;">“Mais eficiência no desenvolvimento. Mais possibilidades para o seu negócio.”</p>
-          <div class="cta-row">
-            <a class="btn btn-primary" id="waMetodoBtn" href="#" target="_blank" rel="noopener">Conhecer uma solução para meu negócio</a>
-          </div>
+      </div>
+      <div class="split-text reveal">
+        <p class="eyebrow">Nosso método</p>
+        <h2>O futuro do desenvolvimento digital está mais acessível.</h2>
+        <p class="lead" style="margin-top:1.1rem;">Utilizamos tecnologias modernas e processos otimizados para transformar ideias em soluções digitais com mais agilidade e eficiência.</p>
+        <p class="body-md" style="margin-top:1.1rem;">Na EdM Soluções, unimos tecnologia com estratégia, criatividade e personalização. Isso ajuda a acelerar o desenvolvimento, mas cada projeto continua sendo pensado para representar sua empresa e atender seus objetivos.</p>
+        <p class="pull-quote" style="margin-top:1.4rem;">“Mais eficiência no desenvolvimento. Mais possibilidades para o seu negócio.”</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" id="waMetodoBtn" href="#" target="_blank" rel="noopener">Conhecer uma solução para meu negócio</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 03 · RESPONSIVO (Devices) ============ -->
-  <section class="scrub-wrap scrub-wrap--tall center-section" id="responsivo">
-    <div class="scrub-sticky">
-      <div class="wrap">
-        <div class="center-head reveal">
-          <p class="eyebrow">Seu website em todos os dispositivos</p>
-          <h2>Uma experiência profissional em qualquer tela.</h2>
-          <p class="lead" style="margin-top:1.1rem;">Seu website é desenvolvido para funcionar de forma moderna, rápida e organizada em computadores, tablets e smartphones.</p>
-        </div>
-
-        <div class="center-media reveal">
-          <div class="media-float media-float--wide">
-            <canvas class="scrub-sprite" data-sprite="devices" data-fit="contain" aria-hidden="true" tabindex="-1"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="center-tail">
+  <!-- ============ 03 · RESPONSIVO ============ -->
+  <section class="center-section" id="responsivo">
     <div class="wrap">
+      <div class="center-head reveal">
+        <p class="eyebrow">Seu website em todos os dispositivos</p>
+        <h2>Uma experiência profissional em qualquer tela.</h2>
+        <p class="lead" style="margin-top:1.1rem;">Seu website é desenvolvido para funcionar de forma moderna, rápida e organizada em computadores, tablets e smartphones.</p>
+      </div>
+
+      <div class="center-media reveal">
+        <div class="icon-panel icon-panel--wide" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><rect x="6" y="10" width="34" height="24" rx="2.4"/><path d="M6 40h34"/><rect x="44" y="22" width="14" height="24" rx="2"/><path d="M49.5 42h3"/></svg>
+        </div>
+      </div>
+
       <ul class="tag-row reveal">
         <li>Layout responsivo</li>
         <li>Navegação intuitiva</li>
@@ -790,31 +677,30 @@ body::before{
         <a class="btn btn-primary" id="waDevicesBtn" href="#" target="_blank" rel="noopener">Quero um website profissional</a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ============ 04 · CRESCIMENTO DIGITAL (Growth) ============ -->
-  <section class="scrub-wrap bleed-section" id="crescimento">
-    <div class="scrub-sticky">
-      <div class="bleed-media">
-        <canvas class="scrub-sprite" data-sprite="growth" data-fit="cover" aria-hidden="true" tabindex="-1"></canvas>
+  <!-- ============ 04 · CRESCIMENTO DIGITAL ============ -->
+  <section class="split-section split-section--graphite" id="crescimento">
+    <div class="wrap split-inner">
+      <div class="split-text reveal">
+        <p class="eyebrow">Seu website pode trabalhar pelo seu negócio</p>
+        <h2>Transforme sua presença digital em novas oportunidades.</h2>
+        <p class="lead" style="margin-top:1.1rem;">Um website profissional ajuda sua empresa a apresentar seus serviços, fortalecer sua credibilidade, facilitar o contato e criar novas oportunidades de crescimento.</p>
+        <ul class="check-list">
+          <li>Mais credibilidade</li>
+          <li>Melhor apresentação</li>
+          <li>Presença digital organizada</li>
+          <li>Facilidade para receber contatos</li>
+          <li>Apoio às campanhas de marketing</li>
+          <li>Novas oportunidades para o negócio</li>
+        </ul>
+        <div class="cta-row">
+          <a class="btn btn-primary" id="waGrowthBtn" href="#" target="_blank" rel="noopener">Falar com a EdM Soluções</a>
+        </div>
       </div>
-      <div class="bleed-overlay bleed-overlay--growth"></div>
-      <div class="wrap">
-        <div class="bleed-text reveal">
-          <p class="eyebrow">Seu website pode trabalhar pelo seu negócio</p>
-          <h2>Transforme sua presença digital em novas oportunidades.</h2>
-          <p class="lead" style="margin-top:1.1rem;">Um website profissional ajuda sua empresa a apresentar seus serviços, fortalecer sua credibilidade, facilitar o contato e criar novas oportunidades de crescimento.</p>
-          <ul class="check-list">
-            <li>Mais credibilidade</li>
-            <li>Melhor apresentação</li>
-            <li>Presença digital organizada</li>
-            <li>Facilidade para receber contatos</li>
-            <li>Apoio às campanhas de marketing</li>
-            <li>Novas oportunidades para o negócio</li>
-          </ul>
-          <div class="cta-row">
-            <a class="btn btn-primary" id="waGrowthBtn" href="#" target="_blank" rel="noopener">Falar com a EdM Soluções</a>
-          </div>
+      <div class="split-media reveal">
+        <div class="icon-panel" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><path d="M32 52V26"/><path d="M32 26c0-8-6-12-14-12 0 8 6 14 14 12z"/><path d="M32 34c0-7 6-10 12-10 0 7-5 12-12 10z"/><path d="M22 52h20"/></svg>
         </div>
       </div>
     </div>
@@ -852,7 +738,7 @@ body::before{
   <section class="founder-section" id="sobre">
     <div class="wrap founder-inner">
       <div class="founder-badge reveal">
-        <div class="badge-ring"><span>EL</span></div>
+        <div class="founder-photo"><img src="assets/img/eduardo.jpg" width="640" height="640" alt="Eduardo Lucas, fundador da EdM Soluções" loading="lazy" decoding="async"></div>
       </div>
       <div class="founder-text reveal">
         <p class="eyebrow">Quem está por trás da EdM</p>
@@ -977,303 +863,6 @@ body::before{
     revealEls.forEach(function(el){ io.observe(el); });
   } else {
     revealEls.forEach(function(el){ el.classList.add("is-visible"); });
-  }
-
-  /* ---------- sprite engine ----------
-     Every animated visual on the site (hero backdrop + the 4 product
-     moments) is a 144-frame sprite sheet (12x12 grid) drawn onto a
-     <canvas>. On desktop the scroll position picks the frame directly
-     (instant, no seeking — works identically on every browser/platform).
-     On mobile / reduced-motion it just free-runs as an ambient loop. */
-  var SPRITE_META = {
-    macbook:    { src:"assets/sprites/macbook.webp",    grid:12, frameCount:144, frameW:420, frameH:236 },
-    smartphone: { src:"assets/sprites/smartphone.webp", grid:12, frameCount:144, frameW:248, frameH:440 },
-    devices:    { src:"assets/sprites/devices.webp",    grid:12, frameCount:144, frameW:860, frameH:484 },
-    growth:     { src:"assets/sprites/growth.webp",     grid:12, frameCount:144, frameW:860, frameH:484 }
-  };
-
-  var imageCache = {};
-  function loadSpriteImage(src){
-    if(!imageCache[src]){
-      imageCache[src] = new Promise(function(resolve){
-        var img = new Image();
-        img.decoding = "async";
-        img.onload = function(){ resolve(img); };
-        img.onerror = function(){ resolve(null); };
-        img.src = src;
-      });
-    }
-    return imageCache[src];
-  }
-
-  var spriteInstances = [];
-
-  function SpriteScrub(canvas){
-    var key = canvas.dataset.sprite;
-    var meta = SPRITE_META[key];
-    this.canvas = canvas;
-    this.ctx = canvas.getContext("2d");
-    this.meta = meta;
-    this.fit = canvas.dataset.fit || "contain";
-    this.frame = -1;
-    this.ready = false;
-    this.img = null;
-    var self = this;
-    spriteInstances.push(this);
-    if(meta){
-      loadSpriteImage(meta.src).then(function(img){
-        self.img = img;
-        self.ready = !!img;
-        self.resize();
-        self.draw(0, true);
-      });
-    }
-  }
-  // Expensive (forces layout via getBoundingClientRect) — call rarely:
-  // once on load and on window resize/orientation change. Never per-frame.
-  SpriteScrub.prototype.resize = function(){
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var rect = this.canvas.getBoundingClientRect();
-    var w = Math.max(1, Math.round(rect.width * dpr));
-    var h = Math.max(1, Math.round(rect.height * dpr));
-    if(this.canvas.width !== w || this.canvas.height !== h){
-      this.canvas.width = w;
-      this.canvas.height = h;
-    }
-  };
-  // Cheap — safe to call every animation frame: only reads the already-set
-  // canvas backing-buffer size, no DOM measurement.
-  SpriteScrub.prototype.draw = function(frameFloat, force){
-    if(!this.ready || !this.meta) return;
-    var meta = this.meta;
-    var idx = Math.max(0, Math.min(meta.frameCount - 1, Math.round(frameFloat)));
-    if(!force && idx === this.frame) return;
-    this.frame = idx;
-
-    var col = idx % meta.grid;
-    var row = Math.floor(idx / meta.grid);
-    var sx = col * meta.frameW, sy = row * meta.frameH;
-
-    var cw = this.canvas.width, ch = this.canvas.height;
-    if(cw === 0 || ch === 0) return;
-
-    var srcRatio = meta.frameW / meta.frameH;
-    var dstRatio = cw / ch;
-    var wider = srcRatio > dstRatio;
-    var dw, dh;
-    if(this.fit === "cover" ? wider : !wider){
-      dh = ch; dw = ch * srcRatio;
-    } else {
-      dw = cw; dh = cw / srcRatio;
-    }
-    var dx = (cw - dw) / 2, dy = (ch - dh) / 2;
-
-    this.ctx.clearRect(0, 0, cw, ch);
-    this.ctx.drawImage(this.img, sx, sy, meta.frameW, meta.frameH, dx, dy, dw, dh);
-  };
-
-  // Single debounced resize handler for every sprite canvas on the page.
-  (function(){
-    var resizeTimer = null;
-    window.addEventListener("resize", function(){
-      if(resizeTimer) clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function(){
-        spriteInstances.forEach(function(s){ s.resize(); s.draw(s.frame, true); });
-      }, 120);
-    }, { passive:true });
-  })();
-
-  /* ---------- scroll-scrubbing (Apple-style pinned canvas) ----------
-     Desktop + no-reduced-motion: each .scrub-wrap pins its canvas while
-     the section scrolls past; the scroll position picks the frame.
-     Mobile / reduced-motion: canvas free-runs as a simple ambient loop. */
-  (function(){
-    var mqDesktop = window.matchMedia("(min-width:960px)");
-    var mqReduce  = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    var items = [];
-    document.querySelectorAll(".scrub-wrap").forEach(function(wrap){
-      var canvas = wrap.querySelector("canvas.scrub-sprite");
-      if(!canvas) return;
-      items.push({ wrap:wrap, sprite:new SpriteScrub(canvas), mode:null, raf:null, acc:0, lastTs:0, frame:0, visible:true });
-    });
-    if(!items.length) return;
-
-    function isScrubMode(){ return mqDesktop.matches && !mqReduce.matches; }
-
-    function ambientTick(item, ts){
-      if(mqReduce.matches){
-        if(item.sprite.ready){
-          item.sprite.draw(40, true);
-          item.raf = null; // frame is drawn and stable — stop scheduling
-          return;
-        }
-        // image not loaded yet — keep checking each frame, but never animate
-        item.raf = window.requestAnimationFrame(function(t){ ambientTick(item, t); });
-        return;
-      }
-      if(!item.lastTs) item.lastTs = ts;
-      var dt = ts - item.lastTs;
-      item.lastTs = ts;
-      var frameDuration = 1000 / 30;
-      item.acc += dt;
-      var count = item.sprite.meta ? item.sprite.meta.frameCount : 144;
-      while(item.acc >= frameDuration){
-        item.frame = (item.frame + 1) % count;
-        item.acc -= frameDuration;
-      }
-      item.sprite.draw(item.frame);
-      if(item.visible){
-        item.raf = window.requestAnimationFrame(function(t){ ambientTick(item, t); });
-      } else {
-        item.raf = null; // paused off-screen; the IntersectionObserver resumes it
-      }
-    }
-
-    function startAmbient(item){
-      if(item.mode === "ambient") return;
-      item.mode = "ambient";
-      item.lastTs = 0; item.acc = 0;
-      item.wrap.style.removeProperty("--p");
-      if(item.raf) window.cancelAnimationFrame(item.raf);
-      item.raf = window.requestAnimationFrame(function(t){ ambientTick(item, t); });
-    }
-    function startScrub(item){
-      if(item.mode === "scrub") return;
-      item.mode = "scrub";
-      if(item.raf){ window.cancelAnimationFrame(item.raf); item.raf = null; }
-    }
-
-    if("IntersectionObserver" in window){
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(entry){
-          for(var i=0;i<items.length;i++){
-            if(items[i].wrap === entry.target){
-              var item = items[i];
-              item.visible = entry.isIntersecting;
-              if(item.visible && item.mode === "ambient" && !item.raf){
-                item.lastTs = 0;
-                item.raf = window.requestAnimationFrame(function(t){ ambientTick(item, t); });
-              }
-              break;
-            }
-          }
-        });
-      }, { rootMargin:"200px 0px" });
-      items.forEach(function(item){ io.observe(item.wrap); });
-    }
-
-    function applyMode(){
-      var scrub = isScrubMode();
-      items.forEach(function(item){ scrub ? startScrub(item) : startAmbient(item); });
-    }
-
-    function update(){
-      if(!isScrubMode()) return;
-      items.forEach(function(item){
-        var rect = item.wrap.getBoundingClientRect();
-        var total = item.wrap.offsetHeight - window.innerHeight;
-        if(total <= 0) return;
-        var progress = Math.min(1, Math.max(0, -rect.top / total));
-        item.wrap.style.setProperty("--p", progress);
-        var count = item.sprite.meta ? item.sprite.meta.frameCount : 144;
-        item.sprite.draw(progress * (count - 1));
-      });
-    }
-
-    var ticking = false;
-    function onScroll(){
-      if(!ticking){
-        window.requestAnimationFrame(function(){ update(); ticking = false; });
-        ticking = true;
-      }
-    }
-
-    applyMode();
-    document.addEventListener("scroll", onScroll, { passive:true });
-    window.addEventListener("resize", function(){ applyMode(); onScroll(); }, { passive:true });
-    if(mqDesktop.addEventListener){
-      mqDesktop.addEventListener("change", function(){ applyMode(); update(); });
-      mqReduce.addEventListener("change", function(){
-        items.forEach(function(item){ item.mode = null; });
-        applyMode(); update();
-      });
-    }
-    window.requestAnimationFrame(update);
-  })();
-
-  /* ---------- hero ambient sprite (always free-running, independent of scroll) ---------- */
-  (function(){
-    var canvas = document.querySelector("canvas.hero-sprite");
-    if(!canvas) return;
-    var sprite = new SpriteScrub(canvas);
-    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if(reduce){
-      // show a single static frame, no motion
-      var tries = 0;
-      var iv = setInterval(function(){
-        if(sprite.ready || ++tries > 40){ sprite.draw(40); clearInterval(iv); }
-      }, 100);
-      return;
-    }
-    var frame = 0, acc = 0, lastTs = 0, visible = true, raf = null;
-    var count = SPRITE_META.growth.frameCount;
-    function tick(ts){
-      if(!lastTs) lastTs = ts;
-      var dt = ts - lastTs; lastTs = ts;
-      acc += dt;
-      var frameDuration = 1000 / 30;
-      while(acc >= frameDuration){ frame = (frame + 1) % count; acc -= frameDuration; }
-      sprite.draw(frame);
-      raf = visible ? window.requestAnimationFrame(tick) : null;
-    }
-    raf = window.requestAnimationFrame(tick);
-    var heroEl = document.querySelector(".hero");
-    if(heroEl && "IntersectionObserver" in window){
-      new IntersectionObserver(function(entries){
-        visible = entries[0].isIntersecting;
-        if(visible && !raf){ lastTs = 0; raf = window.requestAnimationFrame(tick); }
-      }, { rootMargin:"200px 0px" }).observe(heroEl);
-    }
-  })();
-
-  /* ---------- typewriter ---------- */
-  var twEl = document.getElementById("twText");
-  var phrases = [
-    "criando presença digital",
-    "unindo design e tecnologia",
-    "desenvolvimento sob medida",
-    "ideias que viram sites"
-  ];
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if(reduceMotion){
-    twEl.textContent = phrases[0];
-  } else {
-    (function typeLoop(){
-      var i = 0, char = 0, deleting = false;
-      function tick(){
-        var word = phrases[i];
-        if(!deleting){
-          char++;
-          twEl.textContent = word.slice(0, char);
-          if(char === word.length){
-            deleting = true;
-            return setTimeout(tick, 2200);
-          }
-          return setTimeout(tick, 48);
-        } else {
-          char--;
-          twEl.textContent = word.slice(0, char);
-          if(char === 0){
-            deleting = false;
-            i = (i + 1) % phrases.length;
-            return setTimeout(tick, 420);
-          }
-          return setTimeout(tick, 24);
-        }
-      }
-      tick();
-    })();
   }
 
   /* ---------- scroll-margin for anchors under sticky header ---------- */
